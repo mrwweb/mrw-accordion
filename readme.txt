@@ -1,3 +1,7 @@
+> ⚠⚠⚠ THIS BLOCK IS FATALLY FLAWED UNTIL IT IS REWRITTEN OR THIS ISSUE WITH [NESTED `templateLock` BLOCKS](https://github.com/WordPress/gutenberg/issues/11681#issuecomment-884532810) IS RESOLVED.
+> 
+> THIS APPROACH SEEMED LIKE A GOOD IDEA RIGHT UP UNTIL THE END 😭
+
 === MRW Accordion ===
 Contributors:      Mark Root-Wiley
 Tags:              block
