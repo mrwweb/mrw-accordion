@@ -31,8 +31,8 @@ export default function Edit() {
 	return (
 		<div className="mrw-accordion__content">
 			<InnerBlocks
-				template={AccordionContentTemplate}
 				templateLock={false}
+				template={AccordionContentTemplate}
 				allowedBlocks={excludeSelf}
 				/>
 		</div>

@@ -22,8 +22,12 @@
  */
 function mrw_accordion_block_init() {
 
-	register_block_type( __DIR__ );
-	register_block_type( __DIR__ . '/accordion-content' );
+	register_block_type( __DIR__,
+		array( 'render_callback' => 'render_accordion' ),
+	);
+	register_block_type( __DIR__ . '/accordion-content',
+		array( 'render_callback' => 'render_accordion_content' ),
+	);
 
 	register_block_style( 'mrw/accordion', array(
 		'name' => 'white-button',
@@ -32,3 +36,24 @@ function mrw_accordion_block_init() {
 
 }
 add_action( 'init', 'mrw_accordion_block_init' );
+
+function render_accordion( $atts, $content ) {
+	ob_start();
+	?>
+	<div class="mrw-accordion">
+		<?php echo wp_kses_post( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+
+function render_accordion_content( $atts, $content ) {
+	ob_start();
+	?>
+	<div class="mrw-accordion__content">
+		<?php echo wp_kses_post( $content ); ?>
+	</div>
+	<?php
+	return ob_get_clean();
+}
+

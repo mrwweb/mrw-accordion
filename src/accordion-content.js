@@ -4,12 +4,12 @@
  * @see https://developer.wordpress.org/block-editor/reference-guides/block-api/block-registration/
  */
 import { registerBlockType } from '@wordpress/blocks';
+import { InnerBlocks } from '@wordpress/block-editor';
 
 /**
  * Internal dependencies
  */
 import AccordionContentEdit from './accordion-content/edit';
-import AccordionContentSave from './accordion-content/save';
 
 /**
  * Every block starts by registering a new block type definition.
@@ -18,5 +18,7 @@ import AccordionContentSave from './accordion-content/save';
  */
 registerBlockType( 'mrw/accordion-content', {
 	edit: AccordionContentEdit,
-	save: AccordionContentSave,
+	save: props => {
+		return <InnerBlocks.Content />
+	},
 } );
