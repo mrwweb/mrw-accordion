@@ -43,8 +43,7 @@ export default function Edit() {
 		>
 			<InnerBlocks
 				template={ AccordionTemplate }
-				/*templateLock="all"*/
-				allowedBlocks={false}
+				templateLock='all'
 				/>
 		</div>
 	);
