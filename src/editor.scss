@@ -1,15 +1,11 @@
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .editor-styles-wrapper {
 
-	.mrw-accordion > div > div > :is(h2,h3,h4) {
+	@import "style";
+
+	.mrw-accordion__heading {
 		margin: 0 !important;
 		padding: .25em;
 		background-color: #ddd;
-		font-size: 1.25em;
 	}
 
 	.mrw-accordion__content {

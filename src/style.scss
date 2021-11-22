@@ -17,11 +17,10 @@
 	}
 }
 
-.mrw-accordion > :is(h2,h3,h4) {
+.mrw-accordion__heading {
 	margin: 0 !important;
 	padding: 1rem;
 	background-color: #ddd;
-	font-size: 1.5em;
 
 	button {
 		/* Don't show button styles at all */

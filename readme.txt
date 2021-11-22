@@ -1,12 +1,8 @@
-> ⚠⚠⚠ THIS BLOCK IS FATALLY FLAWED UNTIL IT IS REWRITTEN OR THIS ISSUE WITH [NESTED `templateLock` BLOCKS](https://github.com/WordPress/gutenberg/issues/11681#issuecomment-884532810) IS RESOLVED.
-> 
-> THIS APPROACH SEEMED LIKE A GOOD IDEA RIGHT UP UNTIL THE END 😭
-
 === MRW Accordion ===
 Contributors:      Mark Root-Wiley
 Tags:              block
 Tested up to:      5.8.0
-Stable tag:        0.1.0
+Stable tag:        0.2.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -16,7 +12,17 @@ An accessible accordion block that's a joy to edit
 
 An accessible accordion block built by progressively enhancing semantic HTML. The only custom option is an icon color style (black or white) on the Accordion wrapper block. The block uses a core Heading block for editing the accordion "title", so heading level and design is customizable.
 
+== TODOs ==
+- [ ] Heading Level
+- [ ] Heading Font Size
+- [ ] Color Control for heading color and background/accordion border
+- [ ] Auto-generate stable unique IDs for accordions
+- [ ] Custom icons? (Or just document good CSS to set custom icons?)
+
 == Changelog ==
 
+= 0.2.0 =
+* Single block version. This one should work!
+
 = 0.1.0 =
-* Release
+* Failed first attempt due to [nested `templateLock` bug](https://github.com/WordPress/gutenberg/issues/11681#issuecomment-884532810). I learned something. Let's try this again!

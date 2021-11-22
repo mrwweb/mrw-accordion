@@ -1,17 +1,31 @@
 {
 	"apiVersion": 2,
 	"name": "mrw/accordion",
-	"version": "0.1.0",
 	"title": "MRW Accordion",
+	"version": "0.2.0",
+	"description": "Simple, accessible accordion block.",
+	"keywords": [ "faq", "expand", "collapse" ],
 	"category": "design",
 	"icon": "plus-alt",
-	"description": "An accessible accordion block that's a joy to edit. Accordion does not expand/collapse in editor.",
 	"supports": {
-		"html": false
+		"html": false,
+		"align": [ "wide", "full" ],
+		"anchor": true
+	},
+	"attributes": {
+		"anchor": {
+			"type": "string"
+		},
+		"level": {
+			"type": "string"
+		},
+		"heading": {
+			"type": "string"
+		}
 	},
 	"textdomain": "mrw-accordion",
-	"editorScript": "file:./build/accordion.js",
-	"editorStyle": "file:./build/accordion.css",
-	"style": "file:./build/style-accordion.css",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css",
 	"script": "file:./build/accordion-script.js"
 }
