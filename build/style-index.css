@@ -1,0 +1,74 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.mrw-accordion {
+  --mrw-plus-white: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M18 11.2h-5.2V6h-1.6v5.2H6v1.6h5.2V18h1.6v-5.2H18z"/></svg>');
+  --mrw-plus-black: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 11.2h-5.2V6h-1.6v5.2H6v1.6h5.2V18h1.6v-5.2H18z"/></svg>');
+  --mrw-minus-white: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" fill="%23fff"><path d="M4 9h12v2H4V9z" /></svg>');
+  --mrw-minus-black: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" fill="%23000"><path d="M4 9h12v2H4V9z" /></svg>');
+  border: 1px solid #ddd;
+}
+.mrw-accordion__heading {
+  margin: 0 !important;
+  padding: 1rem;
+  background-color: #ddd;
+}
+.mrw-accordion__heading button {
+  /* Don't show button styles at all */
+  all: unset;
+  /* Cover Parent Heading Completely */
+  margin: -1rem;
+  padding: 1rem;
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  /* This prevents strong/em, etc. from flexing */
+}
+.mrw-accordion__heading button > * {
+  display: contents;
+}
+.mrw-accordion__heading button::after {
+  display: inline-block;
+  content: "";
+  width: 1em;
+  height: 1em;
+  margin-left: 1em;
+  background: center/contain no-repeat;
+  background-image: var(--mrw-plus-white);
+  border-radius: 50%;
+  background-color: #000;
+}
+.mrw-accordion__heading button[aria-expanded=true]::after {
+  background-image: var(--mrw-minus-white);
+}
+
+.mrw-accordion.is-style-white-button button::after {
+  background-color: #fff;
+  background-image: var(--mrw-plus-black) !important;
+}
+.mrw-accordion.is-style-white-button button[aria-expanded=true]::after {
+  background-image: var(--mrw-minus-black) !important;
+}
+
+.mrw-accordion__content {
+  /* Display Logic */
+  display: none;
+  /* Styles */
+  padding: 1rem;
+}
+.mrw-accordion__content[aria-hidden=false] {
+  display: block;
+}
+.mrw-accordion__content > :first-child {
+  margin-top: 0;
+}
+.mrw-accordion__content > :last-child {
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=style-index.css.map*/
