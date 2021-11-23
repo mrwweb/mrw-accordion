@@ -17,7 +17,7 @@
 			"type": "string"
 		},
 		"level": {
-			"type": "string"
+			"type": "integer"
 		},
 		"heading": {
 			"type": "string"
