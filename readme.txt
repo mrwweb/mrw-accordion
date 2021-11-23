@@ -12,13 +12,6 @@ An accessible accordion block that's a joy to edit
 
 An accessible accordion block built by progressively enhancing semantic HTML. The only custom option is an icon color style (black or white) on the Accordion wrapper block. The block uses a core Heading block for editing the accordion "title", so heading level and design is customizable.
 
-== TODOs ==
-- [ ] Heading Level
-- [ ] Heading Font Size
-- [ ] Color Control for heading color and background/accordion border
-- [ ] Auto-generate stable unique IDs for accordions
-- [ ] Custom icons? (Or just document good CSS to set custom icons?)
-
 == Changelog ==
 
 = 0.2.0 =
