@@ -24,12 +24,12 @@ function block_init() {
 
 	register_block_type(
 		__DIR__,
-		array( 'render_callback' => __NAMESPACE__ . '\render_accordion' ),
+		array( 'render_callback' => __NAMESPACE__ . '\render_accordion' )
 	);
 
 	register_block_style( 'mrw/accordion', array(
 		'name' => 'white-button',
-		'label' => _x( 'White button', 'Color of accordion expand/collapse button', 'mrw-accordion' ),
+		'label' => _x( 'White button', 'Color of accordion expand/collapse button', 'mrw-accordion' )
 	) );
 
 }
