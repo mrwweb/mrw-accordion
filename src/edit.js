@@ -6,9 +6,14 @@ import {
 	useBlockProps,
 	InnerBlocks,
 	RichText,
-	BlockControls
+	BlockControls,
+	InspectorControls
 } from '@wordpress/block-editor';
-import { ToolbarDropdownMenu } from '@wordpress/components';
+import {
+	ToolbarDropdownMenu,
+	FontSizePicker,
+	PanelBody
+} from '@wordpress/components';
 import HeadingLevelIcon from './heading-level-icons.js';
 
 /**
@@ -19,7 +24,8 @@ import './editor.scss';
 export default function Edit( { isSelected, attributes, setAttributes } ) {
 	const {
 		level,
-		heading
+		heading,
+		fontSize
 	} = attributes;
 
 	const headingLevel = level ?? 2;

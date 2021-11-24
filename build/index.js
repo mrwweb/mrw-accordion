@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: apiVersion, name, title, version, description, keywords, category, icon, supports, attributes, textdomain, editorScript, editorStyle, style, script, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"apiVersion\":2,\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"heading\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+module.exports = JSON.parse("{\"apiVersion\":2,\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true,\"typography\":{\"fontSize\":\"true\"}},\"attributes\":{\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"heading\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
 
 /***/ }),
 
@@ -225,7 +225,8 @@ function Edit({
 }) {
   const {
     level,
-    heading
+    heading,
+    fontSize
   } = attributes;
   const headingLevel = level !== null && level !== void 0 ? level : 2;
   const tagName = 'h' + headingLevel;

@@ -10,7 +10,10 @@
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],
-		"anchor": true
+		"anchor": true,
+		"typography": {
+			"fontSize": "true"
+		}
 	},
 	"attributes": {
 		"anchor": {
