@@ -12,13 +12,12 @@ import {
 	InspectorControls,
 	useSetting
 } from '@wordpress/block-editor';
-
 import {
 	ToolbarDropdownMenu,
 	FontSizePicker,
 	PanelBody
 } from '@wordpress/components';
-
+import { useSelect } from '@wordpress/data';
 
 /**
  * Internal Dependencies
@@ -30,8 +29,10 @@ import HeadingLevelIcon from './gutenberg-scripts/heading-level-icons.js';
  */
 import './editor.scss';
 
-export default function Edit( { isSelected, attributes, setAttributes } ) {
+export default function Edit( { isSelected, attributes, clientId, setAttributes } ) {
 	const {
+		anchor,
+		accordionId,
 		level,
 		headingText,
 		headingFontSize
@@ -40,10 +41,21 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 	const fontSizes = useSetting('typography.fontSizes');
 	const activeFontSize = find( fontSizes, { size: headingFontSize } );
 
+	const d = new Date;
+	const time = d.getTime();
+
+	if( typeof accordionId === undefined ) {
+		setAttributes({ accordionId: clientId });
+	}
+	const postId = useSelect((select) => {
+		return select('core/editor').getCurrentPostId();
+	});
+	const blockId = accordionId ?? clientId;
 	const headingLevel = level ?? 2;
 	const tagName = 'h' + headingLevel;
 
 	const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
+
 
 	function setHeadingLevel( level ) {
 		setAttributes( { 'level': parseInt( level ) } );
@@ -98,7 +110,8 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
-						className: 'mrw-accordion',
+					className: 'mrw-accordion',
+					id: 'accordionId',
 				} ) }
 			>
 				<RichText

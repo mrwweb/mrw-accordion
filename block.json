@@ -14,6 +14,9 @@
 		"anchor": true
 	},
 	"attributes": {
+		"accordionId": {
+			"type": "integer"
+		},
 		"anchor": {
 			"type": "string"
 		},
