@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: apiVersion, $schema, name, title, version, description, keywords, category, icon, supports, attributes, textdomain, editorScript, editorStyle, style, script, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"accordionId\":{\"type\":\"string\"},\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
 
 /***/ }),
 
@@ -299,19 +299,30 @@ __webpack_require__.r(__webpack_exports__);
 function Edit({
   isSelected,
   attributes,
+  clientId,
   setAttributes
 }) {
   const {
+    anchor,
+    accordionId,
     level,
     headingText,
     headingFontSize
   } = attributes;
+
+  if (accordionId !== clientId) {
+    setAttributes({
+      accordionId: clientId
+    });
+  }
+
   const fontSizes = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["useSetting"])('typography.fontSizes');
   const activeFontSize = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["find"])(fontSizes, {
     size: headingFontSize
   });
   const headingLevel = level !== null && level !== void 0 ? level : 2;
   const tagName = 'h' + headingLevel;
+  const contentId = (anchor ? anchor : accordionId) + '-content';
   const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
 
   function setHeadingLevel(level) {
@@ -380,6 +391,7 @@ function Edit({
     },
     allowedFormats: ['core/bold', 'core/italic']
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
+    id: contentId,
     class: "mrw-accordion__content"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InnerBlocks"], {
     allowedBlocks: excludeSelf,

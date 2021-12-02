@@ -8,6 +8,7 @@ require( 'utils.php' );
  */
 function render_accordion( $atts, $content ) {
 
+	$accordion_id = $atts['anchor'] ?? $atts['accordionId'];
 	$align = isset($atts['align']) ? ' align' . $atts['align'] : '';
 	$heading_level = $atts['level'] ?? 2;
 	$heading_tag = 'h' . $heading_level;
@@ -16,10 +17,13 @@ function render_accordion( $atts, $content ) {
 
 	ob_start();
 
+	if( ! isset( $atts['anchor'] ) ) {
+		echo '<!-- ⚠ If you want to make an anchor link to the following accordion, you must set a custom anchor ID in the Advanced > "HTML anchor" sidebar setting of the accordion. The random ID is _not_ stable and may change each time the page is saved again. -->';
+	}
 	?>
 	<div
-		id="<?php echo esc_attr( $atts['anchor'] ); ?>"
-		class="mrw-accordion <?php echo esc_attr( $atts['className'] . $align ); ?>"
+		id="<?php echo esc_attr( $accordion_id ); ?>"
+		class="mrw-accordion <?php echo esc_attr( $atts['className'] ?? '' . $align ); ?>"
 	>
 		<<?php echo $heading_tag; ?> class="<?php echo $heading_classes; ?>">
 			<?php echo esc_html( $heading_text ); ?>

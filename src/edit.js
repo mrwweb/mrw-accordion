@@ -12,13 +12,11 @@ import {
 	InspectorControls,
 	useSetting
 } from '@wordpress/block-editor';
-
 import {
 	ToolbarDropdownMenu,
 	FontSizePicker,
 	PanelBody
 } from '@wordpress/components';
-
 
 /**
  * Internal Dependencies
@@ -30,18 +28,24 @@ import HeadingLevelIcon from './gutenberg-scripts/heading-level-icons.js';
  */
 import './editor.scss';
 
-export default function Edit( { isSelected, attributes, setAttributes } ) {
+export default function Edit( { isSelected, attributes, clientId, setAttributes } ) {
 	const {
+		anchor,
+		accordionId,
 		level,
 		headingText,
 		headingFontSize
 	} = attributes;
 
+	if( accordionId !== clientId ) {
+		setAttributes({ accordionId: clientId });
+	}
+
 	const fontSizes = useSetting('typography.fontSizes');
 	const activeFontSize = find( fontSizes, { size: headingFontSize } );
-
 	const headingLevel = level ?? 2;
 	const tagName = 'h' + headingLevel;
+	const contentId = ( anchor ? anchor : accordionId ) + '-content'
 
 	const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
 
@@ -98,7 +102,7 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
-						className: 'mrw-accordion',
+					className: 'mrw-accordion'
 				} ) }
 			>
 				<RichText
@@ -115,7 +119,7 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 					}
 					allowedFormats={['core/bold', 'core/italic']}
 					/>
-				<div class="mrw-accordion__content">
+				<div id={contentId} class="mrw-accordion__content">
 					<InnerBlocks
 						allowedBlocks={excludeSelf}
 						template={[[ 'core/paragraph', { placeholder: __( 'Accordion content…', 'mrw-accordion' )}]]}
