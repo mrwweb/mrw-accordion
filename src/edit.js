@@ -7,14 +7,22 @@ import {
 	InnerBlocks,
 	RichText,
 	BlockControls,
-	InspectorControls
+	InspectorControls,
+	useSetting
 } from '@wordpress/block-editor';
 import {
 	ToolbarDropdownMenu,
 	FontSizePicker,
 	PanelBody
 } from '@wordpress/components';
-import HeadingLevelIcon from './heading-level-icons.js';
+import HeadingLevelIcon from './gutenberg-scripts/heading-level-icons.js';
+import {
+	getFontSizeOptions,
+	getSelectedOption,
+	splitValueAndUnitFromSize,
+	isSimpleCssValue,
+	CUSTOM_FONT_SIZE,
+} from './gutenberg-scripts/font-size-picker-utils.js';
 
 /**
  * Internal Dependencies
@@ -25,8 +33,10 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 	const {
 		level,
 		heading,
-		fontSize
+		headingFontSize
 	} = attributes;
+
+	const fontSizes = useSetting('typography.fontSizes');
 
 	const headingLevel = level ?? 2;
 	const tagName = 'h' + headingLevel;
@@ -72,6 +82,16 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 					] }
 				/>
 			</BlockControls>
+			<InspectorControls>
+				<PanelBody>
+					<FontSizePicker
+						value={headingFontSize}
+						onChange={ (val) => {setAttributes( {'headingFontSize': val} )} }
+						disableCustomFontSizes={true}
+						fontSizes={fontSizes}
+						/>
+				</PanelBody>
+			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
 						className: 'mrw-accordion',
@@ -81,7 +101,7 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 					value={heading}
 					tagName={tagName}
 					placeholder={__( 'Accordion Title…', 'mrw-accordion' ) }
-					className={'mrw-accordion__heading'}
+					className={`mrw-accordion__heading has-${headingFontSize}-font-size`}
 					onChange={ (val) => {setAttributes( {'heading': val} )} }
 					allowedFormats={['core/bold', 'core/italic']}
 					/>

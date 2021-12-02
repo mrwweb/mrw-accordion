@@ -1,5 +1,6 @@
 {
 	"apiVersion": 2,
+	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"name": "mrw/accordion",
 	"title": "MRW Accordion",
 	"version": "0.2.0",
@@ -10,10 +11,7 @@
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],
-		"anchor": true,
-		"typography": {
-			"fontSize": "true"
-		}
+		"anchor": true
 	},
 	"attributes": {
 		"anchor": {
