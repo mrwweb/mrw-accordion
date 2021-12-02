@@ -16,8 +16,7 @@ import {
 	PanelBody,
 	ToolbarDropdownMenu,
 	FontSizePicker,
-	ColorPalette,
-	ContrastChecker
+	ColorPalette
 } from '@wordpress/components';
 
 /**
