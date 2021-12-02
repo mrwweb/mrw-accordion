@@ -17,7 +17,6 @@ import {
 	FontSizePicker,
 	PanelBody
 } from '@wordpress/components';
-import { useSelect } from '@wordpress/data';
 
 /**
  * Internal Dependencies
@@ -38,24 +37,17 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 		headingFontSize
 	} = attributes;
 
-	const fontSizes = useSetting('typography.fontSizes');
-	const activeFontSize = find( fontSizes, { size: headingFontSize } );
-
-	const d = new Date;
-	const time = d.getTime();
-
-	if( typeof accordionId === undefined ) {
+	if( accordionId !== clientId ) {
 		setAttributes({ accordionId: clientId });
 	}
-	const postId = useSelect((select) => {
-		return select('core/editor').getCurrentPostId();
-	});
-	const blockId = accordionId ?? clientId;
+
+	const fontSizes = useSetting('typography.fontSizes');
+	const activeFontSize = find( fontSizes, { size: headingFontSize } );
 	const headingLevel = level ?? 2;
 	const tagName = 'h' + headingLevel;
+	const contentId = ( anchor ? anchor : accordionId ) + '-content'
 
 	const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
-
 
 	function setHeadingLevel( level ) {
 		setAttributes( { 'level': parseInt( level ) } );
@@ -110,8 +102,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
-					className: 'mrw-accordion',
-					id: 'accordionId',
+					className: 'mrw-accordion'
 				} ) }
 			>
 				<RichText
@@ -128,7 +119,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 					}
 					allowedFormats={['core/bold', 'core/italic']}
 					/>
-				<div class="mrw-accordion__content">
+				<div id={contentId} class="mrw-accordion__content">
 					<InnerBlocks
 						allowedBlocks={excludeSelf}
 						template={[[ 'core/paragraph', { placeholder: __( 'Accordion content…', 'mrw-accordion' )}]]}

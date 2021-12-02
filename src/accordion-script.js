@@ -3,7 +3,8 @@
 document.addEventListener('DOMContentLoaded', function() {
 
 	const 	accordions = document.querySelectorAll('.mrw-accordion'),
-			accordionsTotal = accordions.length;
+			accordionsTotal = accordions.length,
+			target = window.location.hash.substring(1);
 
 	let	i,
 		accordion;
@@ -12,7 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
 		// A new instance of the accordion object is stored in the accordion variable on each iteration of the loop
 		accordion = new AccordionMaker(accordions[i], i);
-		accordion.init();
+		accordion.init( accordions[i].id === target );
+		console.log( accordions[i].id, target );
 
 	}
 
@@ -21,24 +23,22 @@ document.addEventListener('DOMContentLoaded', function() {
 const AccordionMaker = function( accordionContainer, i ) {
 
 	const accordionHeading = accordionContainer.querySelector('.mrw-accordion__heading'),
-		accordionBody = accordionContainer.lastElementChild,
+		accordionBody = accordionContainer.querySelector('.mrw-accordion__content'),
 		// This function both creates the button and returns it
 		accordionButton = addButtonToHeading( accordionHeading ),
-		// Create ID for accordion based on existing ID -OR- accordion number on page
-		headingID = accordionHeading.id,
-		accordionID = ( '' !== headingID ? headingID : i ) + '-accordion';
+		accordionID = accordionContainer.id;
 
-	this.init = function() {
+	this.init = function( isOpen ) {
 
-		accordionBody.id = accordionID;
-		accordionButton.setAttribute('aria-controls', accordionID);
+		accordionBody.id = accordionID + '-content';
+		accordionButton.setAttribute('aria-controls', accordionBody.id);
 
 		// ARIA and Event for Button
-		accordionButton.setAttribute('aria-expanded', 'false');
+		accordionButton.setAttribute('aria-expanded', isOpen );
 		accordionButton.addEventListener('click', accordionClick, false);
 
 		// ARIA for body
-		accordionBody.setAttribute('aria-hidden', 'true');
+		accordionBody.setAttribute('aria-hidden', ! isOpen);
 
 
 	};
