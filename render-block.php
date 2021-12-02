@@ -10,10 +10,15 @@ function render_accordion( $atts, $content ) {
 
 	$accordion_id = $atts['anchor'] ?? $atts['accordionId'];
 	$align = isset($atts['align']) ? ' align' . $atts['align'] : '';
+	$primary_color = $atts['primaryColor'];
 	$heading_level = $atts['level'] ?? 2;
 	$heading_tag = 'h' . $heading_level;
 	$heading_text = $atts['headingText'] ?? '';
-	$heading_classes = get_accordion_heading_classes( $atts['headingFontSize'] ?? false);
+	$heading_classes = get_accordion_heading_classes(
+		$atts['headingFontSize'] ?? false,
+		$atts['primaryColor'] ?? false,
+		$atts['headingTextColor'] ?? false
+	);
 
 	ob_start();
 
@@ -24,6 +29,7 @@ function render_accordion( $atts, $content ) {
 	<div
 		id="<?php echo esc_attr( $accordion_id ); ?>"
 		class="mrw-accordion <?php echo esc_attr( $atts['className'] ?? '' . $align ); ?>"
+		style="border-color: <?php echo esc_attr( $primary_color ); ?>"
 	>
 		<<?php echo $heading_tag; ?> class="<?php echo $heading_classes; ?>">
 			<?php echo esc_html( $heading_text ); ?>

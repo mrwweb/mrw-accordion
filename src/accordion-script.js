@@ -11,7 +11,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	for ( i = 0; i < accordionsTotal; i = i + 1 ) {
 
-		// A new instance of the accordion object is stored in the accordion variable on each iteration of the loop
 		accordion = new AccordionMaker(accordions[i], i);
 		accordion.init( accordions[i].id === target );
 
@@ -53,13 +52,13 @@ function toggleAccordion( accordionId ) {
 
 		accordion.classList.toggle('is-open');
 		button.setAttribute('aria-expanded', 'true');
-		body.setAttribute('aria-hidden', 'false')
+		body.setAttribute('aria-hidden', 'false');
 
 	} else {
 
 		accordion.classList.toggle('is-open');
 		button.setAttribute('aria-expanded', 'false');
-		body.setAttribute('aria-hidden', 'true')
+		body.setAttribute('aria-hidden', 'true');
 
 	}
 

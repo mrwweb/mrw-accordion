@@ -17,6 +17,12 @@
 		"accordionId": {
 			"type": "string"
 		},
+		"primaryColor": {
+			"type": "string"
+		},
+		"headingTextColor": {
+			"type": "string"
+		},
 		"anchor": {
 			"type": "string"
 		},
