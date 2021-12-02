@@ -13,9 +13,11 @@ import {
 	useSetting
 } from '@wordpress/block-editor';
 import {
+	PanelBody,
 	ToolbarDropdownMenu,
 	FontSizePicker,
-	PanelBody
+	ColorPalette,
+	ContrastChecker
 } from '@wordpress/components';
 
 /**
@@ -32,8 +34,10 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 	const {
 		anchor,
 		accordionId,
+		primaryColor,
 		level,
 		headingText,
+		headingTextColor,
 		headingFontSize
 	} = attributes;
 
@@ -41,13 +45,15 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 		setAttributes({ accordionId: clientId });
 	}
 
-	const fontSizes = useSetting('typography.fontSizes');
-	const activeFontSize = find( fontSizes, { size: headingFontSize } );
-	const headingLevel = level ?? 2;
-	const tagName = 'h' + headingLevel;
-	const contentId = ( anchor ? anchor : accordionId ) + '-content'
-
-	const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
+	const colors = useSetting('color.palette'),
+		  activePrimaryColor = find( colors, { color: primaryColor } ),
+		  activeHeadingTextColor = find( colors, { color: headingTextColor } ),
+		  fontSizes = useSetting('typography.fontSizes'),
+		  activeFontSize = find( fontSizes, { size: headingFontSize } ),
+		  headingLevel = level ?? 2,
+		  tagName = 'h' + headingLevel,
+		  contentId = ( anchor ? anchor : accordionId ) + '-content',
+		  allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
 
 	function setHeadingLevel( level ) {
 		setAttributes( { 'level': parseInt( level ) } );
@@ -89,21 +95,40 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 				/>
 			</BlockControls>
 			<InspectorControls>
+				<PanelBody title={ __( 'Accordion Styles', 'mrw-accordion' ) }>
+					<fieldset>
+						<legend style={{marginBottom: '8px'}}>Accordion Color</legend>
+						<ColorPalette
+							value={primaryColor}
+							onChange={(val) => setAttributes({'primaryColor': val})}
+							colors={colors}
+							disableCustomColors={true}
+							/>
+					</fieldset>
+				</PanelBody>
 				<PanelBody title={ __( 'Accordion Heading Styles', 'mrw-accordion' ) }>
 					<FontSizePicker
 						value={headingFontSize}
-						onChange={ (val) => {setAttributes(
-							{'headingFontSize': val}
-						)} }
+						onChange={(val) => setAttributes({'headingFontSize': val})}
 						disableCustomFontSizes={true}
 						fontSizes={fontSizes}
 						/>
+					<fieldset>
+						<legend style={{marginBottom: '8px'}}>Heading Text Color</legend>
+						<ColorPalette
+							value={headingTextColor}
+							onChange={(val) => setAttributes({'headingTextColor': val})}
+							colors={colors}
+							disableCustomColors={true}
+							/>
+					</fieldset>
 				</PanelBody>
 			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
 					className: 'mrw-accordion'
 				} ) }
+				style={{borderColor: primaryColor}}
 			>
 				<RichText
 					value={headingText}
@@ -112,16 +137,22 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 					className={classnames(
 						'mrw-accordion__heading',
 						{
-							[`has-${activeFontSize?.slug}-font-size`]: activeFontSize
+							[`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
+							[`has-${activePrimaryColor?.slug}-background-color`]: activePrimaryColor,
+							[`has-${activeHeadingTextColor?.slug}-color`]: activeHeadingTextColor
 						}
 					)}
 					onChange={(val) => {setAttributes({'headingText': val})}
 					}
 					allowedFormats={['core/bold', 'core/italic']}
+					style={{
+						backgroundColor: primaryColor,
+						color: headingTextColor
+					}}
 					/>
 				<div id={contentId} class="mrw-accordion__content">
 					<InnerBlocks
-						allowedBlocks={excludeSelf}
+						allowedBlocks={allBlocksExceptSelf}
 						template={[[ 'core/paragraph', { placeholder: __( 'Accordion content…', 'mrw-accordion' )}]]}
 						/>
 				</div>

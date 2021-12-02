@@ -19,7 +19,7 @@
 
 .mrw-accordion__heading {
 	margin: 0 !important;
-	padding: 1rem;
+	padding: .25em .5em;
 	background-color: #ddd;
 
 	button {
@@ -73,9 +73,8 @@
 
 .mrw-accordion__content {
 	/* Display Logic */
-	display: none;
-	&[aria-hidden="false"] {
-		display: block;
+	&[aria-hidden="true"] {
+		display: none;
 	}
 
 	/* Styles */

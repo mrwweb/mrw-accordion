@@ -103,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function () {
   let i, accordion;
 
   for (i = 0; i < accordionsTotal; i = i + 1) {
-    // A new instance of the accordion object is stored in the accordion variable on each iteration of the loop
     accordion = new AccordionMaker(accordions[i], i);
     accordion.init(accordions[i].id === target);
   }

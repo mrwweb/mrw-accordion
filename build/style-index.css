@@ -13,7 +13,7 @@
 }
 .mrw-accordion__heading {
   margin: 0 !important;
-  padding: 1rem;
+  padding: 0.25em 0.5em;
   background-color: #ddd;
 }
 .mrw-accordion__heading button {
@@ -58,12 +58,11 @@
 
 .mrw-accordion__content {
   /* Display Logic */
-  display: none;
   /* Styles */
   padding: 1rem;
 }
-.mrw-accordion__content[aria-hidden=false] {
-  display: block;
+.mrw-accordion__content[aria-hidden=true] {
+  display: none;
 }
 .mrw-accordion__content > :first-child {
   margin-top: 0;

@@ -1,11 +1,9 @@
-.editor-styles-wrapper {
+@import "style";
 
-	@import "style";
+.editor-styles-wrapper {
 
 	.mrw-accordion__heading {
 		margin: 0 !important;
-		padding: .25em;
-		background-color: #ddd;
 	}
 
 	.mrw-accordion__content {

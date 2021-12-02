@@ -1,24 +1,22 @@
-.editor-styles-wrapper {
-  /**
-   * The following styles get applied both on the front of your site
-   * and in the editor.
-   *
-   * Replace them with your own styles or remove the file completely.
-   */
-}
-.editor-styles-wrapper .mrw-accordion {
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.mrw-accordion {
   --mrw-plus-white: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23fff"><path d="M18 11.2h-5.2V6h-1.6v5.2H6v1.6h5.2V18h1.6v-5.2H18z"/></svg>');
   --mrw-plus-black: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 11.2h-5.2V6h-1.6v5.2H6v1.6h5.2V18h1.6v-5.2H18z"/></svg>');
   --mrw-minus-white: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" fill="%23fff"><path d="M4 9h12v2H4V9z" /></svg>');
   --mrw-minus-black: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="-2 -2 24 24" fill="%23000"><path d="M4 9h12v2H4V9z" /></svg>');
   border: 1px solid #ddd;
 }
-.editor-styles-wrapper .mrw-accordion__heading {
+.mrw-accordion__heading {
   margin: 0 !important;
-  padding: 1rem;
+  padding: 0.25em 0.5em;
   background-color: #ddd;
 }
-.editor-styles-wrapper .mrw-accordion__heading button {
+.mrw-accordion__heading button {
   /* Don't show button styles at all */
   all: unset;
   /* Cover Parent Heading Completely */
@@ -31,10 +29,10 @@
   cursor: pointer;
   /* This prevents strong/em, etc. from flexing */
 }
-.editor-styles-wrapper .mrw-accordion__heading button > * {
+.mrw-accordion__heading button > * {
   display: contents;
 }
-.editor-styles-wrapper .mrw-accordion__heading button::after {
+.mrw-accordion__heading button::after {
   display: inline-block;
   flex: 0 0 auto;
   content: "";
@@ -46,35 +44,35 @@
   border-radius: 50%;
   background-color: #000;
 }
-.editor-styles-wrapper .mrw-accordion__heading button[aria-expanded=true]::after {
+.mrw-accordion__heading button[aria-expanded=true]::after {
   background-image: var(--mrw-minus-white);
 }
-.editor-styles-wrapper .mrw-accordion.is-style-white-button button::after {
+
+.mrw-accordion.is-style-white-button button::after {
   background-color: #fff;
   background-image: var(--mrw-plus-black) !important;
 }
-.editor-styles-wrapper .mrw-accordion.is-style-white-button button[aria-expanded=true]::after {
+.mrw-accordion.is-style-white-button button[aria-expanded=true]::after {
   background-image: var(--mrw-minus-black) !important;
 }
-.editor-styles-wrapper .mrw-accordion__content {
+
+.mrw-accordion__content {
   /* Display Logic */
-  display: none;
   /* Styles */
   padding: 1rem;
 }
-.editor-styles-wrapper .mrw-accordion__content[aria-hidden=false] {
-  display: block;
+.mrw-accordion__content[aria-hidden=true] {
+  display: none;
 }
-.editor-styles-wrapper .mrw-accordion__content > :first-child {
+.mrw-accordion__content > :first-child {
   margin-top: 0;
 }
-.editor-styles-wrapper .mrw-accordion__content > :last-child {
+.mrw-accordion__content > :last-child {
   margin-bottom: 0;
 }
+
 .editor-styles-wrapper .mrw-accordion__heading {
   margin: 0 !important;
-  padding: 0.25em;
-  background-color: #ddd;
 }
 .editor-styles-wrapper .mrw-accordion__content {
   display: block !important;
