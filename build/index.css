@@ -36,6 +36,7 @@
 }
 .editor-styles-wrapper .mrw-accordion__heading button::after {
   display: inline-block;
+  flex: 0 0 auto;
   content: "";
   width: 1em;
   height: 1em;

@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 const AccordionMaker = function (accordionContainer, i) {
-  const accordionHeading = accordionContainer.firstElementChild,
+  const accordionHeading = accordionContainer.querySelector('.mrw-accordion__heading'),
         accordionBody = accordionContainer.lastElementChild,
         // This function both creates the button and returns it
   accordionButton = addButtonToHeading(accordionHeading),
