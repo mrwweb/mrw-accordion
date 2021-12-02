@@ -180,7 +180,75 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: apiVersion, $schema, name, title, version, description, keywords, category, icon, supports, attributes, textdomain, editorScript, editorStyle, style, script, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"heading\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"name\":\"mrw/accordion\",\"title\":\"MRW Accordion\",\"version\":\"0.2.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+
+/***/ }),
+
+/***/ "./node_modules/classnames/index.js":
+/*!******************************************!*\
+  !*** ./node_modules/classnames/index.js ***!
+  \******************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+  Copyright (c) 2018 Jed Watson.
+  Licensed under the MIT License (MIT), see
+  http://jedwatson.github.io/classnames
+*/
+/* global define */
+
+(function () {
+	'use strict';
+
+	var hasOwn = {}.hasOwnProperty;
+
+	function classNames() {
+		var classes = [];
+
+		for (var i = 0; i < arguments.length; i++) {
+			var arg = arguments[i];
+			if (!arg) continue;
+
+			var argType = typeof arg;
+
+			if (argType === 'string' || argType === 'number') {
+				classes.push(arg);
+			} else if (Array.isArray(arg)) {
+				if (arg.length) {
+					var inner = classNames.apply(null, arg);
+					if (inner) {
+						classes.push(inner);
+					}
+				}
+			} else if (argType === 'object') {
+				if (arg.toString === Object.prototype.toString) {
+					for (var key in arg) {
+						if (hasOwn.call(arg, key) && arg[key]) {
+							classes.push(key);
+						}
+					}
+				} else {
+					classes.push(arg.toString());
+				}
+			}
+		}
+
+		return classes.join(' ');
+	}
+
+	if ( true && module.exports) {
+		classNames.default = classNames;
+		module.exports = classNames;
+	} else if (true) {
+		// register as 'classnames', consistent with npm package name
+		!(__WEBPACK_AMD_DEFINE_ARRAY__ = [], __WEBPACK_AMD_DEFINE_RESULT__ = (function () {
+			return classNames;
+		}).apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	} else {}
+}());
+
 
 /***/ }),
 
@@ -196,15 +264,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Edit; });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
-/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
-/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./gutenberg-scripts/heading-level-icons.js */ "./src/gutenberg-scripts/heading-level-icons.js");
-/* harmony import */ var _gutenberg_scripts_font_size_picker_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./gutenberg-scripts/font-size-picker-utils.js */ "./src/gutenberg-scripts/font-size-picker-utils.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lodash */ "lodash");
+/* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! classnames */ "./node_modules/classnames/index.js");
+/* harmony import */ var classnames__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(classnames__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/block-editor */ "@wordpress/block-editor");
+/* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./gutenberg-scripts/heading-level-icons.js */ "./src/gutenberg-scripts/heading-level-icons.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 
 
 /**
@@ -220,6 +291,11 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 
+/**
+ * Editor Styles to Compile
+ */
+
+
 function Edit({
   isSelected,
   attributes,
@@ -227,10 +303,13 @@ function Edit({
 }) {
   const {
     level,
-    heading,
+    headingText,
     headingFontSize
   } = attributes;
-  const fontSizes = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["useSetting"])('typography.fontSizes');
+  const fontSizes = Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["useSetting"])('typography.fontSizes');
+  const activeFontSize = Object(lodash__WEBPACK_IMPORTED_MODULE_1__["find"])(fontSizes, {
+    size: headingFontSize
+  });
   const headingLevel = level !== null && level !== void 0 ? level : 2;
   const tagName = 'h' + headingLevel;
   const excludeSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
@@ -241,16 +320,16 @@ function Edit({
     });
   }
 
-  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["BlockControls"], {
+  return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["BlockControls"], {
     group: "block"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["ToolbarDropdownMenu"], {
-    icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["ToolbarDropdownMenu"], {
+    icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
       level: headingLevel
     }),
-    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Select heading level', 'mrw-accordion'),
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Heading level', 'mrw-accordion'),
     controls: [{
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Heading 2', 'mrw-accordion'),
-      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Heading 2', 'mrw-accordion'),
+      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "2",
         isPressed: headingLevel === 2
       }),
@@ -258,23 +337,25 @@ function Edit({
       isActive: headingLevel === 2,
       className: 'custom-class'
     }, {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Heading 3', 'mrw-accordion'),
-      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Heading 3', 'mrw-accordion'),
+      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "3",
         isPressed: headingLevel === 3
       }),
       isActive: headingLevel === 3,
       onClick: () => setHeadingLevel(3)
     }, {
-      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Heading 4', 'mrw-accordion'),
-      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Heading 4', 'mrw-accordion'),
+      icon: Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "4",
         isPressed: headingLevel === 4
       }),
       isActive: headingLevel === 4,
       onClick: () => setHeadingLevel(4)
     }]
-  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["PanelBody"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__["FontSizePicker"], {
+  })), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InspectorControls"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Accordion Heading Styles', 'mrw-accordion')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__["FontSizePicker"], {
     value: headingFontSize,
     onChange: val => {
       setAttributes({
@@ -283,25 +364,27 @@ function Edit({
     },
     disableCustomFontSizes: true,
     fontSizes: fontSizes
-  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["useBlockProps"])({
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["useBlockProps"])({
     className: 'mrw-accordion'
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["RichText"], {
-    value: heading,
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["RichText"], {
+    value: headingText,
     tagName: tagName,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Accordion Title…', 'mrw-accordion'),
-    className: `mrw-accordion__heading has-${headingFontSize}-font-size`,
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Accordion Title…', 'mrw-accordion'),
+    className: classnames__WEBPACK_IMPORTED_MODULE_2___default()('mrw-accordion__heading', {
+      [`has-${activeFontSize === null || activeFontSize === void 0 ? void 0 : activeFontSize.slug}-font-size`]: activeFontSize
+    }),
     onChange: val => {
       setAttributes({
-        'heading': val
+        'headingText': val
       });
     },
     allowedFormats: ['core/bold', 'core/italic']
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", {
     class: "mrw-accordion__content"
-  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"], {
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__["InnerBlocks"], {
     allowedBlocks: excludeSelf,
     template: [['core/paragraph', {
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_1__["__"])('Accordion content…', 'mrw-accordion')
+      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__["__"])('Accordion content…', 'mrw-accordion')
     }]]
   }))));
 }
@@ -319,133 +402,6 @@ function Edit({
 __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
-
-/***/ }),
-
-/***/ "./src/gutenberg-scripts/font-size-picker-utils.js":
-/*!*********************************************************!*\
-  !*** ./src/gutenberg-scripts/font-size-picker-utils.js ***!
-  \*********************************************************/
-/*! exports provided: CUSTOM_FONT_SIZE, splitValueAndUnitFromSize, isSimpleCssValue, getFontSizeOptions, getSelectedOption */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CUSTOM_FONT_SIZE", function() { return CUSTOM_FONT_SIZE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "splitValueAndUnitFromSize", function() { return splitValueAndUnitFromSize; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "isSimpleCssValue", function() { return isSimpleCssValue; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getFontSizeOptions", function() { return getFontSizeOptions; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getSelectedOption", function() { return getSelectedOption; });
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
-/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
-/*
- * Copied from https://github.com/WordPress/gutenberg/blob/e96d47b35d8933ed15b1e242b9c85b855707737b/packages/components/src/font-size-picker/utils.js
- */
-
-/**
- * WordPress dependencies
- */
-
-const DEFAULT_FONT_SIZE = 'default';
-const DEFAULT_FONT_SIZE_OPTION = {
-  slug: DEFAULT_FONT_SIZE,
-  name: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Default')
-};
-const CUSTOM_FONT_SIZE = 'custom';
-const CUSTOM_FONT_SIZE_OPTION = {
-  slug: CUSTOM_FONT_SIZE,
-  name: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__["__"])('Custom')
-};
-/**
- * Helper util to split a font size to its numeric value
- * and its `unit`, if exists.
- *
- * @param {string|number} size Font size.
- * @return {[number, string]} An array with the numeric value and the unit if exists.
- */
-
-function splitValueAndUnitFromSize(size) {
-  const [numericValue, unit] = `${size}`.match(/[\d\.]+|\D+/g);
-
-  if (!isNaN(parseFloat(numericValue)) && isFinite(numericValue)) {
-    return [numericValue, unit];
-  }
-
-  return [];
-}
-/**
- * Some themes use css vars for their font sizes, so until we
- * have the way of calculating them don't display them.
- *
- * @param {string|number} value The value that is checked.
- * @return {boolean} Whether the value is a simple css value.
- */
-
-function isSimpleCssValue(value) {
-  const sizeRegex = /^[\d\.]+(px|em|rem|vw|vh|%)?$/i;
-  return sizeRegex.test(value);
-}
-/**
- * Return font size options in the proper format depending
- * on the currently used control (select, toggle group).
- *
- * @param {boolean}  useSelectControl       Whether to use a select control.
- * @param {Object[]} optionsArray           Array of available font sizes objects.
- * @param {*}        disableCustomFontSizes Flag that indicates if custom font sizes are disabled.
- * @return {Object[]|null} Array of font sizes in proper format for the used control.
- */
-
-function getFontSizeOptions(useSelectControl, optionsArray, disableCustomFontSizes) {
-  if (disableCustomFontSizes && !optionsArray.length) {
-    return null;
-  }
-
-  return useSelectControl ? getSelectOptions(optionsArray, disableCustomFontSizes) : getToggleGroupOptions(optionsArray);
-}
-
-function getSelectOptions(optionsArray, disableCustomFontSizes) {
-  const options = [DEFAULT_FONT_SIZE_OPTION, ...optionsArray, ...(disableCustomFontSizes ? [] : [CUSTOM_FONT_SIZE_OPTION])];
-  return options.map(({
-    slug,
-    name,
-    size
-  }) => ({
-    key: slug,
-    name,
-    size,
-    __experimentalHint: size && isSimpleCssValue(size) && parseFloat(size)
-  }));
-}
-
-function getToggleGroupOptions(optionsArray) {
-  return optionsArray.map(({
-    slug,
-    size,
-    name
-  }) => {
-    let label = size;
-
-    if (typeof size === 'string') {
-      const [numericValue] = splitValueAndUnitFromSize(size);
-      label = numericValue;
-    }
-
-    return {
-      key: slug,
-      value: size,
-      label,
-      name
-    };
-  });
-}
-
-function getSelectedOption(fontSizes, value) {
-  if (!value) {
-    return DEFAULT_FONT_SIZE_OPTION;
-  }
-
-  return fontSizes.find(font => font.size === value) || CUSTOM_FONT_SIZE_OPTION;
-}
 
 /***/ }),
 
@@ -622,6 +578,17 @@ Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])(_blo
 /***/ (function(module, exports) {
 
 (function() { module.exports = window["wp"]["i18n"]; }());
+
+/***/ }),
+
+/***/ "lodash":
+/*!*************************!*\
+  !*** external "lodash" ***!
+  \*************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function() { module.exports = window["lodash"]; }());
 
 /***/ })
 

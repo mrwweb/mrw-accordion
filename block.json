@@ -20,7 +20,10 @@
 		"level": {
 			"type": "integer"
 		},
-		"heading": {
+		"headingText": {
+			"type": "string"
+		},
+		"headingFontSize": {
 			"type": "string"
 		}
 	},

@@ -1,6 +1,8 @@
 /**
  * WordPress Dependencies
  */
+import { find } from 'lodash';
+import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
@@ -10,33 +12,33 @@ import {
 	InspectorControls,
 	useSetting
 } from '@wordpress/block-editor';
+
 import {
 	ToolbarDropdownMenu,
 	FontSizePicker,
 	PanelBody
 } from '@wordpress/components';
-import HeadingLevelIcon from './gutenberg-scripts/heading-level-icons.js';
-import {
-	getFontSizeOptions,
-	getSelectedOption,
-	splitValueAndUnitFromSize,
-	isSimpleCssValue,
-	CUSTOM_FONT_SIZE,
-} from './gutenberg-scripts/font-size-picker-utils.js';
+
 
 /**
  * Internal Dependencies
+ */
+import HeadingLevelIcon from './gutenberg-scripts/heading-level-icons.js';
+
+/**
+ * Editor Styles to Compile
  */
 import './editor.scss';
 
 export default function Edit( { isSelected, attributes, setAttributes } ) {
 	const {
 		level,
-		heading,
+		headingText,
 		headingFontSize
 	} = attributes;
 
 	const fontSizes = useSetting('typography.fontSizes');
+	const activeFontSize = find( fontSizes, { size: headingFontSize } );
 
 	const headingLevel = level ?? 2;
 	const tagName = 'h' + headingLevel;
@@ -52,7 +54,7 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 			<BlockControls group="block">
 				<ToolbarDropdownMenu
 					icon={ <HeadingLevelIcon level={headingLevel} /> }
-					label={__('Select heading level', 'mrw-accordion')}
+					label={__('Heading level', 'mrw-accordion')}
 					controls={ [
 						{
 							title: __( 'Heading 2', 'mrw-accordion' ),
@@ -83,10 +85,12 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody>
+				<PanelBody title={ __( 'Accordion Heading Styles', 'mrw-accordion' ) }>
 					<FontSizePicker
 						value={headingFontSize}
-						onChange={ (val) => {setAttributes( {'headingFontSize': val} )} }
+						onChange={ (val) => {setAttributes(
+							{'headingFontSize': val}
+						)} }
 						disableCustomFontSizes={true}
 						fontSizes={fontSizes}
 						/>
@@ -98,11 +102,17 @@ export default function Edit( { isSelected, attributes, setAttributes } ) {
 				} ) }
 			>
 				<RichText
-					value={heading}
+					value={headingText}
 					tagName={tagName}
 					placeholder={__( 'Accordion Title…', 'mrw-accordion' ) }
-					className={`mrw-accordion__heading has-${headingFontSize}-font-size`}
-					onChange={ (val) => {setAttributes( {'heading': val} )} }
+					className={classnames(
+						'mrw-accordion__heading',
+						{
+							[`has-${activeFontSize?.slug}-font-size`]: activeFontSize
+						}
+					)}
+					onChange={(val) => {setAttributes({'headingText': val})}
+					}
 					allowedFormats={['core/bold', 'core/italic']}
 					/>
 				<div class="mrw-accordion__content">
