@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name:       MRW Accordion
- * Description:       An accessible accordion block that&#39;s a joy to edit
+ * Description:       An accessible accordion block that's a joy to edit
  * Requires at least: 5.8
  * Requires PHP:      7.0
  * Version:           0.3.0
