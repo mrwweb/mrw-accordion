@@ -96,7 +96,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 			<InspectorControls>
 				<PanelBody title={ __( 'Accordion Styles', 'mrw-accordion' ) }>
 					<fieldset>
-						<legend style={{marginBottom: '8px'}}>Accordion Color</legend>
+						<legend style={{marginBottom: '8px'}}>Accordion Primary Color</legend>
 						<ColorPalette
 							value={primaryColor}
 							onChange={(val) => setAttributes({'primaryColor': val})}
@@ -138,7 +138,9 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 						{
 							[`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
 							[`has-${activePrimaryColor?.slug}-background-color`]: activePrimaryColor,
-							[`has-${activeHeadingTextColor?.slug}-color`]: activeHeadingTextColor
+							'has-background': activePrimaryColor,
+							[`has-${activeHeadingTextColor?.slug}-color`]: activeHeadingTextColor,
+							'has-text-color': activeHeadingTextColor
 						}
 					)}
 					onChange={(val) => {setAttributes({'headingText': val})}

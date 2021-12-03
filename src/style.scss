@@ -17,50 +17,52 @@
 	}
 }
 
-.mrw-accordion__heading {
+.mrw-accordion .mrw-accordion__heading {
 	margin: 0 !important;
 	padding: .25em .5em;
 	background-color: #ddd;
+}
+.mrw-accordion--has-js .mrw-accordion__heading {
+	padding: 0 !important;
+}
 
-	button {
-		/* Don't show button styles at all */
-		all: unset;
+/* Using Longer Selector to Increase Specificity of all: unset */
+.mrw-accordion button.mrw-accordion__button {
+	/* Don't show button styles at all */
+	all: unset;
 
-		/* Cover Parent Heading Completely */
-		margin: -1rem;
-		padding: 1rem;
+	box-sizing: border-box;
+	display: flex;
+	width: 100%;
+	padding: .25em .5em;
+	justify-content: space-between;
+	align-items: center;
+	cursor: pointer;
 
-		display: flex;
-		width: 100%;
-		justify-content: space-between;
-		align-items: center;
-		cursor: pointer;
+	/* This prevents strong/em, etc. from flexing */
+	> * {
+		display: contents;
+	}
 
-		/* This prevents strong/em, etc. from flexing */
-		> * {
-			display: contents;
-		}
+	&::after {
+		display: inline-block;
+		flex: 0 0 auto;
+		content: '';
+		width: 1em;
+		height: 1em;
+		margin-left: 1em;
+		background: center / contain no-repeat;
+		background-image: var(--mrw-plus-white);
+		border-radius: 50%;
+		background-color: #000;
+	}
 
-		&::after {
-			display: inline-block;
-			flex: 0 0 auto;
-			content: '';
-			width: 1em;
-			height: 1em;
-			margin-left: 1em;
-			background: center / contain no-repeat;
-			background-image: var(--mrw-plus-white);
-			border-radius: 50%;
-			background-color: #000;
-		}
-
-		&[aria-expanded="true"]::after {
-			background-image: var(--mrw-minus-white);
-		}
+	&[aria-expanded="true"]::after {
+		background-image: var(--mrw-minus-white);
 	}
 }
 
-.mrw-accordion.is-style-white-button button {
+.mrw-accordion.is-style-white-button button.mrw-accordion__button {
 	&::after {
 		background-color: #fff;
 		background-image: var(--mrw-plus-black) !important;
@@ -71,7 +73,7 @@
 	}
 }
 
-.mrw-accordion__content {
+.mrw-accordion .mrw-accordion__content {
 	/* Display Logic */
 	&[aria-hidden="true"] {
 		display: none;

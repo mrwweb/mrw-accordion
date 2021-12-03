@@ -86,31 +86,36 @@ function openAccordion( accordionId ) {
 
 const AccordionMaker = function( accordionContainer, i ) {
 
-	const accordionHeading = accordionContainer.querySelector('.mrw-accordion__heading'),
-		accordionBody = accordionContainer.querySelector('.mrw-accordion__content'),
-		// This function both creates the button and returns it
-		accordionButton = addButtonToHeading( accordionHeading ),
-		accordionID = accordionContainer.id;
+	const heading = accordionContainer.querySelector('.mrw-accordion__heading'),
+		  body = accordionContainer.querySelector('.mrw-accordion__content'),
+		  // This function both creates the button and returns it
+		  button = addButtonToHeading( heading ),
+		  accordionID = accordionContainer.id;
 
 	this.init = function( isOpen ) {
 
-		accordionBody.id = accordionID + '-content';
-		accordionButton.setAttribute('aria-controls', accordionBody.id);
+		body.id = accordionID + '-content';
+		button.setAttribute('aria-controls', body.id);
+		button.className = heading.className;
+		button.classList.remove('mrw-accordion__heading');
+		button.classList.add('mrw-accordion__button');
 
 		// ARIA and Event for Button
-		accordionButton.setAttribute('aria-expanded', isOpen );
-		accordionButton.addEventListener('click', e => toggleAccordion(e.currentTarget.getAttribute('aria-controls').replace('-content','')), false);
+		button.setAttribute('aria-expanded', isOpen );
+		button.addEventListener('click', e => toggleAccordion(e.currentTarget.getAttribute('aria-controls').replace('-content','')), false);
 
 		// ARIA for body
-		accordionBody.setAttribute('aria-hidden', ! isOpen);
+		body.setAttribute('aria-hidden', ! isOpen);
 
+		// Class to distinguish JS-enabled accordions
+		accordionContainer.classList.add('mrw-accordion--has-js')
 
 	};
 
 	function addButtonToHeading( heading ) {
 
-		const 	headingHTML = heading.innerHTML,
-				button = document.createElement( 'button' );
+		const headingHTML = heading.innerHTML,
+			  button = document.createElement( 'button' );
 
 		button.innerHTML = headingHTML.trim();
 		heading.innerHTML = '';

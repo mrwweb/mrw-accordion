@@ -10,7 +10,7 @@ function render_accordion( $atts, $content ) {
 
 	$accordion_id = $atts['anchor'] ?? $atts['accordionId'];
 	$align = isset($atts['align']) ? ' align' . $atts['align'] : '';
-	$primary_color = $atts['primaryColor'];
+	$primary_color = $atts['primaryColor'] ?? false;
 	$heading_level = $atts['level'] ?? 2;
 	$heading_tag = 'h' . $heading_level;
 	$heading_text = $atts['headingText'] ?? '';
