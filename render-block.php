@@ -19,6 +19,9 @@ function render_accordion( $atts, $content ) {
 		$atts['primaryColor'] ?? false,
 		$atts['headingTextColor'] ?? false
 	);
+	if( $primary_color ) {
+		$block_styles = 'style="border-color:' . esc_attr( $primary_color ) . '"';
+	}
 
 	ob_start();
 
@@ -29,10 +32,10 @@ function render_accordion( $atts, $content ) {
 	<div
 		id="<?php echo esc_attr( $accordion_id ); ?>"
 		class="mrw-accordion <?php echo esc_attr( $atts['className'] ?? '' . $align ); ?>"
-		style="border-color: <?php echo esc_attr( $primary_color ); ?>"
+		<?php echo $block_styles ?? ''; ?>
 	>
 		<<?php echo $heading_tag; ?> class="<?php echo $heading_classes; ?>">
-			<?php echo esc_html( $heading_text ); ?>
+			<?php echo wp_kses_post( $heading_text ); ?>
 		</<?php echo $heading_tag; ?>>
 		<div class="mrw-accordion__content">
 			<?php echo wp_kses_post( $content ); ?>
