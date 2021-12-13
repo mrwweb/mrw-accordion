@@ -48,7 +48,7 @@
 }
 
 .mrw-accordion__icon {
-	display: inline-block !important;
+	display: block !important;
 	width: 1em;
 	height: 1em;
 	max-width: 32px;
@@ -59,6 +59,10 @@
 	line {
 		stroke: currentColor;
 	}
+}
+
+.mrw-accordion__svg {
+	display: block;
 }
 
 .mrw-accordion__button[aria-expanded="true"] .mrw-accordion__icon--caret {
