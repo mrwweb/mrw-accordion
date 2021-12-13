@@ -20,6 +20,19 @@ import './style.scss';
 registerBlockType( blockJson, {
 	edit,
 	save: props => {
-		return <InnerBlocks.Content />
+		const {
+			level,
+			headingText
+		} = props.attributes;
+
+		const headingLevel = level ?? 2,
+			  HeadingTag = 'h' + headingLevel;
+
+		return (
+			<>
+				<HeadingTag>{headingText}</HeadingTag>
+				<InnerBlocks.Content />
+			</>
+		)
 	},
 } );
