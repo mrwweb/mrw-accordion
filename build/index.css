@@ -35,13 +35,29 @@
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  /* This prevents strong/em, etc. from flexing */
 }
 .mrw-accordion button.mrw-accordion__button > * {
-  display: contents;
+  flex: 0 0 auto;
 }
 .mrw-accordion button.mrw-accordion__button:focus {
   outline: 3px solid currentColor;
+}
+
+.mrw-accordion__icon {
+  display: inline-block !important;
+  width: 1em;
+  height: 1em;
+  max-width: 32px;
+  max-height: 32px;
+  transition: transform 0.125s linear;
+}
+.mrw-accordion__icon polyline,
+.mrw-accordion__icon line {
+  stroke: currentColor;
+}
+
+.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret {
+  transform: scaleY(-1);
 }
 
 .mrw-accordion .mrw-accordion__content {
@@ -74,6 +90,16 @@
 
 .editor-styles-wrapper {
   /* ":last-child" becomes 2nd-to-last due to block inserter */
+}
+.editor-styles-wrapper .mrw-accordion__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-styles-wrapper .mrw-accordion__editor-button {
+  all: unset;
+  display: inline-block;
+  /* TURN ON WHEN FUNCTIONAL cursor: pointer; */
 }
 .editor-styles-wrapper .mrw-accordion__content {
   display: block !important;

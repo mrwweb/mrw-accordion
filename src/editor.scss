@@ -2,6 +2,18 @@
 
 .editor-styles-wrapper {
 
+	.mrw-accordion__heading {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.mrw-accordion__editor-button {
+		all: unset;
+		display: inline-block;
+		/* TURN ON WHEN FUNCTIONAL cursor: pointer; */
+	}
+
 	.mrw-accordion__content {
 		display: block !important;
 		

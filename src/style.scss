@@ -38,14 +38,31 @@
 	align-items: center;
 	cursor: pointer;
 
-	/* This prevents strong/em, etc. from flexing */
 	> * {
-		display: contents;
+		flex: 0 0 auto;
 	}
 
 	&:focus {
 		outline: 3px solid currentColor;
 	}
+}
+
+.mrw-accordion__icon {
+	display: inline-block !important;
+	width: 1em;
+	height: 1em;
+	max-width: 32px;
+	max-height: 32px;
+	transition: transform .125s linear;
+
+	polyline,
+	line {
+		stroke: currentColor;
+	}
+}
+
+.mrw-accordion__button[aria-expanded="true"] .mrw-accordion__icon--caret {
+	transform: scaleY(-1);
 }
 
 .mrw-accordion .mrw-accordion__content {
