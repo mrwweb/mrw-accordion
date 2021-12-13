@@ -3,19 +3,31 @@
 .editor-styles-wrapper {
 
 	.mrw-accordion__heading {
-		margin: 0 !important;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	
+	.mrw-accordion__editor-button {
+		all: unset;
+		display: inline-block;
+		/* TURN ON WHEN FUNCTIONAL cursor: pointer; */
 	}
 
 	.mrw-accordion__content {
 		display: block !important;
-		padding: 1em;
-
-		> div > div > :first-child {
+		
+		.block-editor-block-list__layout > :first-child {
 			margin-top: 0;
 		}
-		> div > div > :last-child {
+		.block-editor-block-list__layout > :last-child {
 			margin-bottom: 0;
 		}
+	}
+
+	/* ":last-child" becomes 2nd-to-last due to block inserter */
+	.mrw-accordion.has-child-selected .block-editor-block-list__layout > :nth-last-child(2) {
+		margin-bottom: 0;
 	}
 
 }

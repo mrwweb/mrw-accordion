@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: apiVersion, $schema, name, title, version, description, keywords, category, icon, supports, attributes, textdomain, editorScript, editorStyle, style, script, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://schemas.wp.org/trunk/block.json\",\"name\":\"mrw/accordion\",\"title\":\"Accordion\",\"version\":\"0.3.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"accordionId\":{\"type\":\"string\"},\"primaryColor\":{\"type\":\"string\"},\"headingTextColor\":{\"type\":\"string\"},\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json\",\"name\":\"mrw/accordion\",\"title\":\"Accordion\",\"version\":\"0.3.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"plus-alt\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"accordionId\":{\"type\":\"string\"},\"primaryColor\":{\"type\":\"string\"},\"headingTextColor\":{\"type\":\"string\"},\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
 
 /***/ }),
 
@@ -364,9 +364,42 @@ function Edit({
     size: headingFontSize
   }),
         headingLevel = level !== null && level !== void 0 ? level : 2,
-        tagName = 'h' + headingLevel,
+        HeadingTag = 'h' + headingLevel,
         contentId = (anchor ? anchor : accordionId) + '-content',
-        allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion');
+        allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion'),
+        icons = {};
+  icons.caret = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("svg", {
+    "aria-hidden": "true",
+    class: "mrw-accordion__icon mrw-accordion__svg--caret",
+    x: "0",
+    y: "0",
+    viewBox: "0 0 16 16",
+    fill: "none"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("polyline", {
+    stroke: "#000",
+    "stroke-width": "2",
+    points: "2,6 8,12 14,6"
+  }));
+  icons.plusMinus = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("svg", {
+    "aria-hidden": "true",
+    class: "mrw-accordion__svg mrw-accordion__svg--plus-minus",
+    viewBox: "0 0 16 16",
+    fill: "none"
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
+    x1: "4",
+    y1: "8",
+    x2: "12",
+    y2: "8",
+    stroke: "#000",
+    "stroke-width": ".125em"
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
+    x1: "8",
+    y1: "4",
+    x2: "8",
+    y2: "12",
+    stroke: "#000",
+    "stroke-width": ".125em"
+  }));
 
   function setHeadingLevel(level) {
     setAttributes({
@@ -446,17 +479,19 @@ function Edit({
     style: {
       borderColor: primaryColor
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["RichText"], {
-    value: headingText,
-    tagName: tagName,
-    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Accordion Title…', 'mrw-accordion'),
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(HeadingTag, {
     className: classnames__WEBPACK_IMPORTED_MODULE_3___default()('mrw-accordion__heading', {
       [`has-${activeFontSize === null || activeFontSize === void 0 ? void 0 : activeFontSize.slug}-font-size`]: activeFontSize,
       [`has-${activePrimaryColor === null || activePrimaryColor === void 0 ? void 0 : activePrimaryColor.slug}-background-color`]: activePrimaryColor,
       'has-background': activePrimaryColor,
       [`has-${activeHeadingTextColor === null || activeHeadingTextColor === void 0 ? void 0 : activeHeadingTextColor.slug}-color`]: activeHeadingTextColor,
       'has-text-color': activeHeadingTextColor
-    }),
+    })
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["RichText"], {
+    value: `${headingText !== null && headingText !== void 0 ? headingText : ''}`,
+    tagName: "span",
+    className: "mrw-accordion__heading-text",
+    placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Accordion Title…', 'mrw-accordion'),
     onChange: val => {
       setAttributes({
         'headingText': val
@@ -467,14 +502,23 @@ function Edit({
       backgroundColor: primaryColor,
       color: headingTextColor
     }
-  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+  }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("button", {
+    className: `mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`,
+    "aria-hidden": "true" // remove this when button is ready for use!
+
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
+    className: "screen-reader-text"
+  }, "Toggle Accordion"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
+    icon: icons.caret
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     id: contentId,
     class: "mrw-accordion__content"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InnerBlocks"], {
-    allowedBlocks: allBlocksExceptSelf,
-    template: [['core/paragraph', {
-      placeholder: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Accordion content…', 'mrw-accordion')
-    }]]
+    allowedBlocks: allBlocksExceptSelf
+    /*
+    trying with this off because you get a nicer inserter
+    template={[[ 'core/paragraph', { placeholder: __( 'Accordion content…', 'mrw-accordion' )}]]} */
+
   }))));
 }
 
