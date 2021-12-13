@@ -26,6 +26,10 @@ function render_accordion( $atts, $content ) {
 	}
 	$icon_svg = file_get_contents( plugin_dir_path(__FILE__) .'img/' . $icon . '.svg' );
 
+	/* Due to current "Hybrid Block" strategy, I now need to filter out the first block which is the heading */
+	$search_string = "<h${heading_level}>${heading_text}</h${heading_level}>";
+	$content = str_replace( $search_string, '', $content );
+
 	ob_start();
 
 	if( ! isset( $atts['anchor'] ) ) {
