@@ -653,7 +653,13 @@ var _block_json__WEBPACK_IMPORTED_MODULE_3___namespace = /*#__PURE__*/__webpack_
 Object(_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__["registerBlockType"])(_block_json__WEBPACK_IMPORTED_MODULE_3__, {
   edit: _edit__WEBPACK_IMPORTED_MODULE_4__["default"],
   save: props => {
-    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"].Content, null);
+    const {
+      level,
+      headingText
+    } = props.attributes;
+    const headingLevel = level !== null && level !== void 0 ? level : 2,
+          HeadingTag = 'h' + headingLevel;
+    return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(HeadingTag, null, headingText), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__["InnerBlocks"].Content, null));
   }
 });
 
