@@ -39,6 +39,9 @@ In addition, this block uses "progressive enhancement" so that it can work witho
 
 == Changelog ==
 
+= 0.5.0 =
+* Thanks for the Consortium for Service Innovation for a small sponsorhip and user testing!
+
 = 0.4.0 =
 * Refactor icons to use real SVGs and use a chevron icon by default
 * Add accordion title heading to saved markup to improve plugin deactivation
