@@ -1,1 +1,124 @@
-.mrw-accordion{border:1px solid #ddd}.mrw-accordion .mrw-accordion__heading{padding:12px 24px}.mrw-accordion .mrw-accordion__heading:not(.has-background){background-color:#ddd}.mrw-accordion:not(.is-style-plain) .mrw-accordion__heading{margin:0 !important}.mrw-accordion--has-js .mrw-accordion__heading{padding:0 !important}.mrw-accordion button.mrw-accordion__button{all:unset;box-sizing:border-box;display:flex;width:100%;padding:12px 24px;justify-content:space-between;align-items:center;cursor:pointer}.mrw-accordion button.mrw-accordion__button>*{flex:0 0 auto}.mrw-accordion button.mrw-accordion__button:focus{outline:3px solid currentColor}.mrw-accordion__icon{display:block !important;width:1em;height:1em;max-width:32px;max-height:32px;transition:transform .125s linear}.mrw-accordion__icon polyline,.mrw-accordion__icon line{stroke:currentColor}.mrw-accordion__svg{display:block}.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret{transform:scaleY(-1)}.mrw-accordion .mrw-accordion__content{padding:24px}.mrw-accordion .mrw-accordion__content[aria-hidden=true]{display:none}.mrw-accordion .mrw-accordion__content>:first-child{margin-top:0}.mrw-accordion .mrw-accordion__content>:last-child{margin-bottom:0}.mrw-accordion.is-style-plain{border:0 !important}.mrw-accordion.is-style-plain .mrw-accordion__heading,.mrw-accordion.is-style-plain .mrw-accordion__button{background-color:transparent !important}.mrw-accordion.is-style-plain .mrw-accordion__heading,.mrw-accordion.is-style-plain .mrw-accordion__button,.mrw-accordion.is-style-plain .mrw-accordion__content{padding:0 !important}.editor-styles-wrapper .mrw-accordion__heading{display:flex;justify-content:space-between;align-items:center}.editor-styles-wrapper .mrw-accordion__editor-button{all:unset;display:inline-block}.editor-styles-wrapper .mrw-accordion__content{display:block !important}.editor-styles-wrapper .mrw-accordion__content .block-editor-block-list__layout>:first-child{margin-top:0}.editor-styles-wrapper .mrw-accordion__content .block-editor-block-list__layout>:last-child{margin-bottom:0}.editor-styles-wrapper .mrw-accordion.has-child-selected .block-editor-block-list__layout>:nth-last-child(2){margin-bottom:0}
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.mrw-accordion {
+  border: 1px solid #ddd;
+}
+
+.mrw-accordion .mrw-accordion__heading {
+  padding: 12px 24px;
+}
+.mrw-accordion .mrw-accordion__heading:not(.has-background) {
+  background-color: #ddd;
+}
+
+/* Uses :not so that the plain style will use theme margin */
+.mrw-accordion:not(.is-style-plain) .mrw-accordion__heading {
+  margin: 0 !important;
+}
+
+.mrw-accordion--has-js .mrw-accordion__heading {
+  padding: 0 !important;
+}
+
+/* Using Longer Selector to Increase Specificity of all: unset */
+.mrw-accordion button.mrw-accordion__button {
+  /* Don't show button styles at all */
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  width: 100%;
+  padding: 12px 24px;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+.mrw-accordion button.mrw-accordion__button > * {
+  flex: 0 0 auto;
+}
+.mrw-accordion button.mrw-accordion__button:focus {
+  outline: 3px solid currentColor;
+}
+
+.mrw-accordion__icon {
+  display: block !important;
+  width: 1em;
+  height: 1em;
+  max-width: 32px;
+  max-height: 32px;
+  transition: transform 0.125s linear;
+}
+.mrw-accordion__icon polyline,
+.mrw-accordion__icon line {
+  stroke: currentColor;
+}
+
+.mrw-accordion__svg {
+  display: block;
+}
+
+.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret {
+  transform: scaleY(-1);
+}
+
+.mrw-accordion .mrw-accordion__content {
+  /* Display Logic */
+  /* Styles */
+  padding: 24px;
+}
+.mrw-accordion .mrw-accordion__content[aria-hidden=true] {
+  display: none;
+}
+.mrw-accordion .mrw-accordion__content > :first-child {
+  margin-top: 0;
+}
+.mrw-accordion .mrw-accordion__content > :last-child {
+  margin-bottom: 0;
+}
+
+.mrw-accordion.is-style-plain {
+  border: 0 !important;
+}
+.mrw-accordion.is-style-plain .mrw-accordion__heading,
+.mrw-accordion.is-style-plain .mrw-accordion__button {
+  background-color: transparent !important;
+}
+.mrw-accordion.is-style-plain .mrw-accordion__heading,
+.mrw-accordion.is-style-plain .mrw-accordion__button,
+.mrw-accordion.is-style-plain .mrw-accordion__content {
+  padding: 0 !important;
+}
+
+.editor-styles-wrapper {
+  /* ":last-child" becomes 2nd-to-last due to block inserter */
+}
+.editor-styles-wrapper .mrw-accordion__heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.editor-styles-wrapper .mrw-accordion__editor-button {
+  all: unset;
+  display: inline-block;
+  /* TURN ON WHEN FUNCTIONAL cursor: pointer; */
+}
+.editor-styles-wrapper .mrw-accordion__icon {
+  transform: scaleY(-1);
+}
+.editor-styles-wrapper .mrw-accordion__content {
+  display: block !important;
+}
+.editor-styles-wrapper .mrw-accordion__content .block-editor-block-list__layout > :first-child {
+  margin-top: 0;
+}
+.editor-styles-wrapper .mrw-accordion__content .block-editor-block-list__layout > :last-child {
+  margin-bottom: 0;
+}
+.editor-styles-wrapper .mrw-accordion.has-child-selected .block-editor-block-list__layout > :nth-last-child(2) {
+  margin-bottom: 0;
+}
+
+/*# sourceMappingURL=index.css.map*/
