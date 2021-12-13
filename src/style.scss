@@ -32,15 +32,11 @@
 
 	box-sizing: border-box;
 	display: flex;
+	flex-wrap: wrap;
 	width: 100%;
 	padding: 12px 24px;
-	justify-content: space-between;
 	align-items: center;
 	cursor: pointer;
-
-	> * {
-		flex: 0 0 auto;
-	}
 
 	&:focus {
 		outline: 3px solid currentColor;
@@ -48,7 +44,9 @@
 }
 
 .mrw-accordion__icon {
+	flex: 0 0 auto;
 	display: block !important;
+	margin-left: auto;
 	width: 1em;
 	height: 1em;
 	max-width: 32px;
