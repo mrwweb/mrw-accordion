@@ -4,7 +4,7 @@ Tags:              block
 Requires at least: 5.8
 Requires PHP:	   7.0
 Tested up to:      5.8.0
-Stable tag:        0.3.0
+Stable tag:        0.4.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Tags: Accordion, Expand, Collapse, FAQ
@@ -19,9 +19,9 @@ This plugin creates a single "Accordion" block that can be used alone or in grou
 
 = Block Options =
 
-- Heading Level
-- Primary Color (Heading background / accordion border)
-- Heading Text Color
+- Heading level
+- Primary color (heading background and accordion border)
+- Heading text color
 - CSS classes
 - HTML anchor
 
@@ -38,6 +38,11 @@ Specifically, each accordion item is represented by a heading so screen reader u
 In addition, this block uses "progressive enhancement" so that it can work without JavaScript. In the case thta a visitor has disabled JavaScript or another script has broken, all content will be visible.
 
 == Changelog ==
+
+= 0.4.0 =
+* Refactor icons to use real SVGs and use a chevron icon by default
+* Add accordion title heading to saved markup to improve plugin deactivation
+* Dev: Add block.json schema, fix build process to avoid losing front-end script
 
 = 0.3.0 =
 * Font size setting for headings

@@ -145,19 +145,18 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 								'has-text-color': activeHeadingTextColor
 							}
 						)}
+					style={{
+						backgroundColor: primaryColor,
+						color: headingTextColor
+					}}
 				>
 					<RichText
 						value={`${headingText ?? ''}`}
 						tagName="span"
 						className="mrw-accordion__heading-text"
 						placeholder={__( 'Accordion Title…', 'mrw-accordion' ) }
-						onChange={(val) => {setAttributes({'headingText': val})}
-						}
+						onChange={(val) => {setAttributes({'headingText': val})}}
 						allowedFormats={['core/bold', 'core/italic']}
-						style={{
-							backgroundColor: primaryColor,
-							color: headingTextColor
-						}}
 						/>
 					<button
 						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`}

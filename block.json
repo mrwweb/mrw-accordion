@@ -7,7 +7,7 @@
 	"description": "Simple, accessible accordion block.",
 	"keywords": [ "faq", "expand", "collapse" ],
 	"category": "design",
-	"icon": "plus-alt",
+	"icon": "arrow-down-alt2",
 	"supports": {
 		"html": false,
 		"align": [ "wide", "full" ],
