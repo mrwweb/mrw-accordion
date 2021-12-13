@@ -28,7 +28,7 @@ function render_accordion( $atts, $content ) {
 
 	/* Due to current "Hybrid Block" strategy, I now need to filter out the first block which is the heading */
 	$search_string = "<h${heading_level}>${heading_text}</h${heading_level}>";
-	$content = str_replace( $search_string, '', $content );
+	$content = str_replace( $search_string, '', html_entity_decode($content) );
 
 	ob_start();
 
