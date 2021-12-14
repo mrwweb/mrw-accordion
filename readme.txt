@@ -13,7 +13,7 @@ An accessible accordion block that's a joy to edit.
 
 == Description ==
 
-Use one or more accordion blocks to let visitors expand and collapse information. Great for FAQs, complex instructions, and auxiliary information.
+Use one or more accordion blocks to let visitors expand and collapse information. Great for FAQs, complex instructions, and auxiliary/aside information within a long post.
 
 This plugin creates a single "Accordion" block that can be used alone or in groups.
 
@@ -22,6 +22,7 @@ This plugin creates a single "Accordion" block that can be used alone or in grou
 - Heading level
 - Primary color (heading background and accordion border)
 - Heading text color
+- "Plain" block style (no background, border, or padding)
 - CSS classes
 - HTML anchor
 
@@ -36,6 +37,20 @@ Web accessibility is the critical—and often overlooked—practice that ensures
 Specifically, each accordion item is represented by a heading so screen reader users and search engines can quickly understand the page outline. A button in each heading ensures that the accordion item can be expanded and collapsed with a keyboard, and the button correctly communicates whether the accordion is open or closed both visually and to assistive technology.
 
 In addition, this block uses "progressive enhancement" so that it can work without JavaScript. In the case thta a visitor has disabled JavaScript or another script has broken, all content will be visible.
+
+== Frequently Asked Questions ==
+
+= Why not using the `summary` and `details` elements? =
+
+- Valid and accessible but can't use headings.
+
+= What happens when I uninstall the plugin/block? =
+
+Coming soon.
+
+= How can I customize the default accordion settings? =
+
+Use a block variation!
 
 == Changelog ==
 
