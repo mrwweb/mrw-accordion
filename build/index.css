@@ -92,13 +92,14 @@
 }
 
 .editor-styles-wrapper {
+  /* Should match front-end styles for .mrw-accordion__button */
   /* ":last-child" becomes 2nd-to-last due to block inserter */
 }
 .editor-styles-wrapper .mrw-accordion__heading {
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: 1em;
 }
 .editor-styles-wrapper .mrw-accordion__editor-button {
   all: unset;

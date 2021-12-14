@@ -2,11 +2,12 @@
 
 .editor-styles-wrapper {
 
+	/* Should match front-end styles for .mrw-accordion__button */
 	.mrw-accordion__heading {
 		display: flex;
-		flex-wrap: wrap;
 		justify-content: space-between;
 		align-items: center;
+		gap: 1em;
 	}
 	
 	.mrw-accordion__editor-button {
