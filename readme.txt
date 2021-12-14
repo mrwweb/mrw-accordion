@@ -41,7 +41,7 @@ In addition, this block uses "progressive enhancement" so that it can work witho
 
 = 0.5.0 =
 * Thanks for the Consortium for Service Innovation for a small sponsorhip and user testing!
-* Fixes: Wrap long headings, show icon in open state in editor, strip fallback heading's with inline formatting from accordion content.
+* Fixes: Wrap long headings, show icon in open state in editor, strip fallback heading's with inline formatting from accordion content, fix accordions with removed custom IDs.
 
 = 0.4.0 =
 * Refactor icons to use real SVGs and use a chevron icon by default
