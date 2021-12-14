@@ -30,10 +30,11 @@
   all: unset;
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1em;
+  align-items: center;
   width: 100%;
   padding: 12px 24px;
-  align-items: center;
   cursor: pointer;
 }
 .mrw-accordion button.mrw-accordion__button:focus {
@@ -43,7 +44,6 @@
 .mrw-accordion__icon {
   flex: 0 0 auto;
   display: block !important;
-  margin-left: auto;
   width: 1em;
   height: 1em;
   max-width: 32px;
