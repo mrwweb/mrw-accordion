@@ -8,7 +8,7 @@ require( 'utils.php' );
  */
 function render_accordion( $atts, $content ) {
 
-	$accordion_id = $atts['anchor'] ?? $atts['accordionId'];
+	$accordion_id = isset($atts['anchor']) && !empty($atts['anchor']) ? $atts['anchor'] : $atts['accordionId'];
 	$align = isset($atts['align']) ? ' align' . $atts['align'] : '';
 	$primary_color = $atts['primaryColor'] ?? false;
 	$heading_level = $atts['level'] ?? 2;
