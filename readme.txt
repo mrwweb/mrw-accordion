@@ -56,6 +56,7 @@ Use a block variation!
 
 = 0.5.0 =
 * Thanks for the Consortium for Service Innovation for a small sponsorhip and user testing!
+* Expand/Collapse now works in the editor (all block still open-by-default in the editor)
 * Fixes: Wrap long headings, show icon in open state in editor, strip fallback heading's with inline formatting from accordion content, fix accordions with removed custom IDs, don't show block if heading and content are empty.
 
 = 0.4.0 =
