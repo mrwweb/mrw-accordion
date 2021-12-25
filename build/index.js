@@ -320,6 +320,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 /**
  * Internal Dependencies
  */
@@ -367,7 +368,9 @@ function Edit({
         HeadingTag = 'h' + headingLevel,
         contentId = (anchor ? anchor : accordionId) + '-content',
         allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion'),
-        icons = {};
+        icons = {},
+        toggleButton = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useRef"])(),
+        innerContainer = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
   icons.caret = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("svg", {
     "aria-hidden": "true",
     class: "mrw-accordion__svg mrw-accordion__svg--caret",
@@ -405,6 +408,17 @@ function Edit({
     setAttributes({
       'level': parseInt(level)
     });
+  }
+
+  function toggleAccordion() {
+    const state = 'true' === toggleButton.current.getAttribute('aria-expanded');
+    toggleButton.current.setAttribute('aria-expanded', !state);
+
+    if (state) {
+      innerContainer.current.style.display = 'none';
+    } else {
+      innerContainer.current.style.display = 'block';
+    }
   }
 
   return Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["Fragment"], null, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["BlockControls"], {
@@ -503,14 +517,16 @@ function Edit({
     },
     allowedFormats: ['core/bold', 'core/italic']
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("button", {
+    ref: toggleButton,
+    onClick: toggleAccordion,
     className: `mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`,
-    "aria-hidden": "true" // remove this when button is ready for use!
-
+    "aria-expanded": "true"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "screen-reader-text"
   }, "Toggle Accordion"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
     icon: icons.caret
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
+    ref: innerContainer,
     id: contentId,
     class: "mrw-accordion__content"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["InnerBlocks"], {

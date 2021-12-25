@@ -104,13 +104,11 @@
 .editor-styles-wrapper .mrw-accordion__editor-button {
   all: unset;
   display: inline-block;
-  /* TURN ON WHEN FUNCTIONAL cursor: pointer; */
+  cursor: pointer;
+  transition: transform 0.125s linear;
 }
-.editor-styles-wrapper .mrw-accordion__icon {
+.editor-styles-wrapper .mrw-accordion__icon[aria-expanded=true] {
   transform: scaleY(-1);
-}
-.editor-styles-wrapper .mrw-accordion__content {
-  display: block !important;
 }
 .editor-styles-wrapper .mrw-accordion__content .block-editor-block-list__layout > :first-child {
   margin-top: 0;

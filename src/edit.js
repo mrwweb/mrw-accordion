@@ -19,6 +19,7 @@ import {
 	FontSizePicker,
 	ColorPalette
 } from '@wordpress/components';
+import { useRef } from '@wordpress/element';
 
 /**
  * Internal Dependencies
@@ -54,13 +55,25 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 		  HeadingTag = 'h' + headingLevel,
 		  contentId = ( anchor ? anchor : accordionId ) + '-content',
 		  allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion'),
-		  icons = {};
+		  icons = {},
+		  toggleButton = useRef(),
+		  innerContainer = useRef();
 
 	icons.caret = <svg aria-hidden="true" class="mrw-accordion__svg mrw-accordion__svg--caret" x="0" y="0" viewBox="0 0 16 16" fill="none"><polyline stroke="#000" stroke-width="2" points="2,6 8,12 14,6" /></svg>;
 	icons.plusMinus = <svg aria-hidden="true" class="mrw-accordion__svg mrw-accordion__svg--plus-minus" viewBox="0 0 16 16" fill="none"><line x1="4" y1="8" x2="12" y2="8"  stroke="#000" stroke-width=".125em" /><line x1="8" y1="4" x2="8" y2="12"  stroke="#000" stroke-width=".125em" /></svg>;
 
 	function setHeadingLevel( level ) {
 		setAttributes( { 'level': parseInt( level ) } );
+	}
+
+	function toggleAccordion() {
+		const state = 'true' === toggleButton.current.getAttribute('aria-expanded');
+		toggleButton.current.setAttribute('aria-expanded', ! state);
+		if( state ) {
+			innerContainer.current.style.display = 'none';
+		} else {
+			innerContainer.current.style.display = 'block';
+		}
 	}
 
 	return (
@@ -159,14 +172,16 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 						allowedFormats={['core/bold', 'core/italic']}
 						/>
 					<button
+						ref={toggleButton}
+						onClick={toggleAccordion}
 						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`}
-						aria-hidden="true" // remove this when button is ready for use!
+						aria-expanded="true"
 					>
 						<span className="screen-reader-text">Toggle Accordion</span>
 						<Icon icon={icons.caret} />
 					</button>
 				</HeadingTag>
-				<div id={contentId} class="mrw-accordion__content">
+				<div ref={innerContainer} id={contentId} class="mrw-accordion__content">
 					<InnerBlocks
 						allowedBlocks={allBlocksExceptSelf}
 						/*
