@@ -13,16 +13,15 @@
 	.mrw-accordion__editor-button {
 		all: unset;
 		display: inline-block;
-		/* TURN ON WHEN FUNCTIONAL cursor: pointer; */
+		cursor: pointer;
+		transition: transform .125s linear;
 	}
 
-	.mrw-accordion__icon {
-		transform: scaleY(-1)
+	.mrw-accordion__icon[aria-expanded="true"] {
+		transform: scaleY(-1);
 	}
 
 	.mrw-accordion__content {
-		display: block !important;
-		
 		.block-editor-block-list__layout > :first-child {
 			margin-top: 0;
 		}
