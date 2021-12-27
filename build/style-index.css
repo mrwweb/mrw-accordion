@@ -57,6 +57,10 @@
 .mrw-accordion__icon line {
   stroke: currentColor;
 }
+.mrw-accordion__icon line {
+  transform-origin: 50% 50%;
+  transition: transform 0.125s linear;
+}
 
 .mrw-accordion__svg {
   display: block;
@@ -64,6 +68,10 @@
 
 .mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret {
   transform: scaleY(-1);
+}
+
+.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--plusminus line:last-child {
+  transform: rotate(90deg);
 }
 
 .mrw-accordion .mrw-accordion__content {

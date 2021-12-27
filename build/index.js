@@ -180,7 +180,7 @@ __webpack_require__.r(__webpack_exports__);
 /*! exports provided: apiVersion, $schema, name, title, version, description, keywords, category, icon, supports, attributes, textdomain, editorScript, editorStyle, style, script, default */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json\",\"name\":\"mrw/accordion\",\"title\":\"Accordion\",\"version\":\"0.3.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"arrow-down-alt2\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"accordionId\":{\"type\":\"string\"},\"primaryColor\":{\"type\":\"string\"},\"headingTextColor\":{\"type\":\"string\"},\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
+module.exports = JSON.parse("{\"apiVersion\":2,\"$schema\":\"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json\",\"name\":\"mrw/accordion\",\"title\":\"Accordion\",\"version\":\"0.3.0\",\"description\":\"Simple, accessible accordion block.\",\"keywords\":[\"faq\",\"expand\",\"collapse\"],\"category\":\"design\",\"icon\":\"arrow-down-alt2\",\"supports\":{\"html\":false,\"align\":[\"wide\",\"full\"],\"anchor\":true},\"attributes\":{\"accordionId\":{\"type\":\"string\"},\"accordionIcon\":{\"type\":\"string\"},\"primaryColor\":{\"type\":\"string\"},\"headingTextColor\":{\"type\":\"string\"},\"anchor\":{\"type\":\"string\"},\"level\":{\"type\":\"integer\"},\"headingText\":{\"type\":\"string\"},\"headingFontSize\":{\"type\":\"string\"}},\"textdomain\":\"mrw-accordion\",\"editorScript\":\"file:./build/index.js\",\"editorStyle\":\"file:./build/index.css\",\"style\":\"file:./build/style-index.css\",\"script\":\"file:./build/accordion-script.js\"}");
 
 /***/ }),
 
@@ -340,6 +340,7 @@ function Edit({
   const {
     anchor,
     accordionId,
+    accordionIcon,
     primaryColor,
     level,
     headingText,
@@ -368,6 +369,7 @@ function Edit({
         HeadingTag = 'h' + headingLevel,
         contentId = (anchor ? anchor : accordionId) + '-content',
         allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion'),
+        selectedIcon = accordionIcon !== null && accordionIcon !== void 0 ? accordionIcon : 'caret',
         icons = {},
         toggleButton = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useRef"])(),
         innerContainer = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
@@ -385,23 +387,23 @@ function Edit({
   }));
   icons.plusMinus = Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("svg", {
     "aria-hidden": "true",
-    class: "mrw-accordion__svg mrw-accordion__svg--plus-minus",
+    class: "mrw-accordion__svg mrw-accordion__svg--plusminus",
     viewBox: "0 0 16 16",
     fill: "none"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
-    x1: "4",
+    x1: "2",
     y1: "8",
-    x2: "12",
+    x2: "14",
     y2: "8",
     stroke: "#000",
-    "stroke-width": ".125em"
+    "stroke-width": "2"
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("line", {
     x1: "8",
-    y1: "4",
+    y1: "2",
     x2: "8",
-    y2: "12",
+    y2: "14",
     stroke: "#000",
-    "stroke-width": ".125em"
+    "stroke-width": "2"
   }));
 
   function setHeadingLevel(level) {
@@ -487,7 +489,22 @@ function Edit({
     }),
     colors: colors,
     disableCustomColors: true
-  })))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["useBlockProps"])({
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["PanelBody"], {
+    title: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Accordion Icon Options', 'mrw-accordion')
+  }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["RadioControl"], {
+    label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Expand/Collapse Icon', 'mrw-accordion'),
+    selected: selectedIcon,
+    options: [{
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Caret', 'mrw-accordion'),
+      value: 'caret'
+    }, {
+      label: Object(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__["__"])('Plus/Minus'),
+      value: 'plusMinus'
+    }],
+    onChange: val => setAttributes({
+      'accordionIcon': val
+    })
+  }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", _babel_runtime_helpers_extends__WEBPACK_IMPORTED_MODULE_0___default()({}, Object(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_5__["useBlockProps"])({
     className: 'mrw-accordion'
   }), {
     style: {
@@ -519,12 +536,12 @@ function Edit({
   }), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("button", {
     ref: toggleButton,
     onClick: toggleAccordion,
-    className: `mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`,
+    className: `mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`,
     "aria-expanded": "true"
   }, Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("span", {
     className: "screen-reader-text"
   }, "Toggle Accordion"), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])(_wordpress_components__WEBPACK_IMPORTED_MODULE_6__["Icon"], {
-    icon: icons.caret
+    icon: icons[selectedIcon]
   }))), Object(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__["createElement"])("div", {
     ref: innerContainer,
     id: contentId,

@@ -16,6 +16,7 @@ import {
 	Icon,
 	PanelBody,
 	ToolbarDropdownMenu,
+	RadioControl,
 	FontSizePicker,
 	ColorPalette
 } from '@wordpress/components';
@@ -35,6 +36,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 	const {
 		anchor,
 		accordionId,
+		accordionIcon,
 		primaryColor,
 		level,
 		headingText,
@@ -55,12 +57,13 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 		  HeadingTag = 'h' + headingLevel,
 		  contentId = ( anchor ? anchor : accordionId ) + '-content',
 		  allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== 'mrw/accordion'),
+		  selectedIcon = accordionIcon ?? 'caret',
 		  icons = {},
 		  toggleButton = useRef(),
 		  innerContainer = useRef();
 
 	icons.caret = <svg aria-hidden="true" class="mrw-accordion__svg mrw-accordion__svg--caret" x="0" y="0" viewBox="0 0 16 16" fill="none"><polyline stroke="#000" stroke-width="2" points="2,6 8,12 14,6" /></svg>;
-	icons.plusMinus = <svg aria-hidden="true" class="mrw-accordion__svg mrw-accordion__svg--plus-minus" viewBox="0 0 16 16" fill="none"><line x1="4" y1="8" x2="12" y2="8"  stroke="#000" stroke-width=".125em" /><line x1="8" y1="4" x2="8" y2="12"  stroke="#000" stroke-width=".125em" /></svg>;
+	icons.plusMinus = <svg aria-hidden="true" class="mrw-accordion__svg mrw-accordion__svg--plusminus" viewBox="0 0 16 16" fill="none"><line x1="2" y1="8" x2="14" y2="8"  stroke="#000" stroke-width="2" /><line x1="8" y1="2" x2="8" y2="14"  stroke="#000" stroke-width="2" /></svg>;
 
 	function setHeadingLevel( level ) {
 		setAttributes( { 'level': parseInt( level ) } );
@@ -140,6 +143,17 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 							/>
 					</fieldset>
 				</PanelBody>
+				<PanelBody title={ __( 'Accordion Icon Options', 'mrw-accordion' ) }>
+					<RadioControl
+						label={ __( 'Expand/Collapse Icon', 'mrw-accordion' ) }
+						selected={selectedIcon}
+						options={[
+							{ label: __( 'Caret', 'mrw-accordion' ), value: 'caret' },
+							{ label: __( 'Plus/Minus' ), value: 'plusMinus' }
+						]}
+						onChange={(val) => setAttributes({'accordionIcon': val})}
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<div
 				{ ...useBlockProps( {
@@ -174,11 +188,11 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 					<button
 						ref={toggleButton}
 						onClick={toggleAccordion}
-						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${'caret'}`}
+						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`}
 						aria-expanded="true"
 					>
 						<span className="screen-reader-text">Toggle Accordion</span>
-						<Icon icon={icons.caret} />
+						<Icon icon={icons[selectedIcon]} />
 					</button>
 				</HeadingTag>
 				<div ref={innerContainer} id={contentId} class="mrw-accordion__content">

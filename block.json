@@ -17,6 +17,9 @@
 		"accordionId": {
 			"type": "string"
 		},
+		"accordionIcon": {
+			"type": "string"
+		},
 		"primaryColor": {
 			"type": "string"
 		},
