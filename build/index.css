@@ -40,6 +40,9 @@
 .mrw-accordion button.mrw-accordion__button:focus {
   outline: 3px solid currentColor;
 }
+.mrw-accordion button.mrw-accordion__button:focus:not(:focus-visible) {
+  outline: none;
+}
 
 .mrw-accordion__icon {
   flex: 0 0 auto;
@@ -106,6 +109,15 @@
   display: inline-block;
   cursor: pointer;
   transition: transform 0.125s linear;
+}
+.editor-styles-wrapper .mrw-accordion__editor-button:hover {
+  outline: 1px solid currentColor;
+}
+.editor-styles-wrapper .mrw-accordion__editor-button:focus {
+  outline: 3px solid currentColor;
+}
+.editor-styles-wrapper .mrw-accordion__editor-button:focus:not(:focus-visible, :hover) {
+  outline: none;
 }
 .editor-styles-wrapper .mrw-accordion__icon[aria-expanded=true] {
   transform: scaleY(-1);

@@ -15,6 +15,18 @@
 		display: inline-block;
 		cursor: pointer;
 		transition: transform .125s linear;
+
+		&:hover {
+			outline: 1px solid currentColor;
+		}
+		
+		&:focus {
+			outline: 3px solid currentColor;
+		}
+		
+		&:focus:not(:focus-visible,:hover) {
+			outline: none;
+		}
 	}
 
 	.mrw-accordion__icon[aria-expanded="true"] {

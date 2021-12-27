@@ -42,6 +42,10 @@
 	&:focus {
 		outline: 3px solid currentColor;
 	}
+
+	&:focus:not(:focus-visible) {
+		outline: none;
+	}
 }
 
 .mrw-accordion__icon {

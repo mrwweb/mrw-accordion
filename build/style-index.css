@@ -40,6 +40,9 @@
 .mrw-accordion button.mrw-accordion__button:focus {
   outline: 3px solid currentColor;
 }
+.mrw-accordion button.mrw-accordion__button:focus:not(:focus-visible) {
+  outline: none;
+}
 
 .mrw-accordion__icon {
   flex: 0 0 auto;
