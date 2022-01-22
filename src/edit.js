@@ -152,6 +152,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 							{ label: __( 'Plus/Minus' ), value: 'plusMinus' }
 						]}
 						onChange={(val) => setAttributes({'accordionIcon': val})}
+						className="mrw-accordion-icon-option"
 					/>
 				</PanelBody>
 			</InspectorControls>
