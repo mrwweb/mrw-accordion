@@ -26,12 +26,12 @@ function render_accordion( $atts, $content ) {
 		$atts['primaryColor'] ?? false,
 		$atts['headingTextColor'] ?? false
 	);
-	$icon = $atts['icon'] ?? 'caret';
+	$icon = $atts['accordionIcon'] ?? 'caret';
 	$icon = in_array( $icon, ['caret','plusMinus'] ) ? $icon : 'caret';
 	if( $primary_color ) {
 		$block_styles = 'style="border-color:' . esc_attr( $primary_color ) . '"';
 	}
-	$icon_svg = file_get_contents( plugin_dir_path(__FILE__) .'img/' . $icon . '.svg' );
+	$icon_svg = file_get_contents( plugin_dir_path(__FILE__) .'img/' . strtolower( $icon ) . '.svg' );
 
 	ob_start();
 
@@ -48,7 +48,7 @@ function render_accordion( $atts, $content ) {
 			<span class="mrw-accordion__heading-text">
 				<?php echo wp_kses_post( $heading_text ); ?>
 			</span>
-			<span class="mrw-accordion__icon mrw-accordion__icon--<?php echo esc_attr( $icon ); ?>" style="display:none">
+			<span class="mrw-accordion__icon mrw-accordion__icon--<?php echo strtolower( esc_attr( $icon ) ); ?>" style="display:none">
 				<?php echo $icon_svg; ?>
 			</span>
 		</<?php echo $heading_tag; ?>>

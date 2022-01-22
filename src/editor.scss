@@ -1,4 +1,5 @@
 @import "style";
+@import "accordion-icons-options";
 
 .editor-styles-wrapper {
 
@@ -20,7 +21,7 @@
 			outline: 1px solid currentColor;
 		}
 		
-		&:focus {
+		&:focus:not(:hover) {
 			outline: 3px solid currentColor;
 		}
 		
@@ -29,8 +30,12 @@
 		}
 	}
 
-	.mrw-accordion__icon[aria-expanded="true"] {
+	.mrw-accordion__icon--caret[aria-expanded="true"] {
 		transform: scaleY(-1);
+	}
+
+	.mrw-accordion__icon--plusminus[aria-expanded="true"] line:last-child {
+		transform: rotate(90deg);
 	}
 
 	.mrw-accordion__content {
