@@ -3,7 +3,7 @@ Contributors:      mrwweb
 Tags:              block
 Requires at least: 5.8
 Requires PHP:	   7.0
-Tested up to:      5.8.0
+Tested up to:      6.0
 Stable tag:        0.4.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -28,7 +28,7 @@ This plugin creates a single "Accordion" block that can be used alone or in grou
 
 = When to Use Accordions =
 
-Accordions are incredibly common, and for good reason! In many cases, they can take overwhelming content and make it easier to take in. However, accordions are not always the right choice and come with downsides. Consider whether creating additional pages or using headings is a better solution. Learn more: ["Accordions Are Not Always the Answer for Complex Content on Desktops"](Accordions Are Not Always the Answer for Complex Content on Desktops)
+Accordions are incredibly common, and for good reason! In many cases, they can take overwhelming content and make it easier to take in. However, accordions are not always the right choice and come with downsides. Consider whether creating additional pages or using headings is a better solution. For guidelines and usability research, read ["Accordions Are Not Always the Answer for Complex Content on Desktops"](https://www.nngroup.com/articles/accordions-complex-content/) from the Nielsen Norman Group.
 
 = About Accessibility & Progressive Enhancement =
 
@@ -36,17 +36,17 @@ Web accessibility is the critical—and often overlooked—practice that ensures
 
 Specifically, each accordion item is represented by a heading so screen reader users and search engines can quickly understand the page outline. A button in each heading ensures that the accordion item can be expanded and collapsed with a keyboard, and the button correctly communicates whether the accordion is open or closed both visually and to assistive technology.
 
-In addition, this block uses "progressive enhancement" so that it can work without JavaScript. In the case thta a visitor has disabled JavaScript or another script has broken, all content will be visible.
+In addition, this block uses "progressive enhancement" so that it can work without JavaScript. In the case that a visitor has turned off JavaScript or another script has broken, all content will be visible.
 
 == Frequently Asked Questions ==
 
 = Why not using the `summary` and `details` elements? =
 
-- Valid and accessible but can't use headings.
+Those are valid and accessible HTML elements but you can't use headings in a `summary` element. For more information, see ["Details / Summary Are Not [insert control here]"](https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html) from Adrian Roselli.
 
 = What happens when I uninstall the plugin/block? =
 
-Coming soon.
+The block content will be left in the page source where the accordion toggle is a heading and all the contained content follows it.
 
 = How can I customize the default accordion settings? =
 
