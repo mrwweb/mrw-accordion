@@ -115,9 +115,9 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 				/>
 			</BlockControls>
 			<InspectorControls>
-				<PanelBody title={ __( 'Accordion Styles', 'mrw-accordion' ) }>
+				<PanelBody title={ __( 'Accordion Settings', 'mrw-accordion' ) }>
 					<fieldset>
-						<legend style={{marginBottom: '8px'}}>Accordion Primary Color</legend>
+						<legend style={{marginBottom: '8px'}}>Primary Color</legend>
 						<ColorPalette
 							value={primaryColor}
 							onChange={(val) => setAttributes({'primaryColor': val})}
@@ -125,8 +125,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 							disableCustomColors={true}
 							/>
 					</fieldset>
-				</PanelBody>
-				<PanelBody title={ __( 'Accordion Heading Styles', 'mrw-accordion' ) }>
+					<h3 className="mrw-accordion-settings-heading">Heading Styles</h3>
 					<FontSizePicker
 						value={headingFontSize}
 						onChange={(val) => setAttributes({'headingFontSize': val})}
@@ -142,8 +141,7 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 							disableCustomColors={true}
 							/>
 					</fieldset>
-				</PanelBody>
-				<PanelBody title={ __( 'Accordion Icon Options', 'mrw-accordion' ) }>
+					<h3 className="mrw-accordion-settings-heading">Icon</h3>
 					<RadioControl
 						label={ __( 'Expand/Collapse Icon', 'mrw-accordion' ) }
 						selected={selectedIcon}
