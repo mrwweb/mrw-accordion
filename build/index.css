@@ -102,11 +102,9 @@
   padding: 0 !important;
 }
 
-.mrw-accordion-icon-option .components-base-control__field {
-  display: -ms-grid;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 44px);
-  gap: 1.5em;
+.mrw-accordion-icon-option .components-base-control__field .components-flex {
+  flex-direction: row;
+  justify-content: flex-start;
 }
 .mrw-accordion-icon-option .components-base-control__field .components-base-control__label {
   border: 0;
@@ -123,6 +121,7 @@
 }
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option {
   position: relative;
+  flex: 0 1 44px;
 }
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option input {
   position: absolute;

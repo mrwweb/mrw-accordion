@@ -1,7 +1,8 @@
 .mrw-accordion-icon-option .components-base-control__field {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, 44px);
-	gap: 1.5em;
+	.components-flex {
+		flex-direction: row;
+		justify-content: flex-start;
+	}
 
 	.components-base-control__label {
 		border: 0;
@@ -18,6 +19,7 @@
 
 	.components-radio-control__option {
 		position: relative;
+		flex: 0 1 44px;
 
 		input {
 			position: absolute;
