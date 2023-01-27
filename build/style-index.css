@@ -1,1 +1,105 @@
-.mrw-accordion{border:1px solid #ddd}.mrw-accordion .mrw-accordion__heading{padding:12px 24px}.mrw-accordion .mrw-accordion__heading:not(.has-background){background-color:#ddd}.mrw-accordion:not(.is-style-plain) .mrw-accordion__heading{margin:0 !important}.mrw-accordion--has-js .mrw-accordion__heading{padding:0 !important}.mrw-accordion button.mrw-accordion__button{all:unset;box-sizing:border-box;display:flex;justify-content:space-between;gap:1em;align-items:center;width:100%;padding:12px 24px;cursor:pointer}.mrw-accordion button.mrw-accordion__button:focus{outline:3px solid currentColor}.mrw-accordion button.mrw-accordion__button:focus:not(:focus-visible){outline:none}.mrw-accordion__icon{flex:0 0 auto;display:block !important;width:1em;height:1em;max-width:32px;max-height:32px;transition:transform .125s linear}.mrw-accordion__icon polyline,.mrw-accordion__icon line{stroke:currentColor}.mrw-accordion__icon line{transform-origin:50% 50%;transition:transform .125s linear}.mrw-accordion__svg{display:block}.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret{transform:scaleY(-1)}.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--plusminus line:last-child{transform:rotate(90deg)}.mrw-accordion .mrw-accordion__content{padding:24px}.mrw-accordion .mrw-accordion__content[aria-hidden=true]{display:none}.mrw-accordion .mrw-accordion__content>:first-child{margin-top:0}.mrw-accordion .mrw-accordion__content>:last-child{margin-bottom:0}.mrw-accordion.is-style-plain{border:0 !important}.mrw-accordion.is-style-plain .mrw-accordion__heading,.mrw-accordion.is-style-plain .mrw-accordion__button{background-color:transparent !important}.mrw-accordion.is-style-plain .mrw-accordion__heading,.mrw-accordion.is-style-plain .mrw-accordion__button,.mrw-accordion.is-style-plain .mrw-accordion__content{padding:0 !important}
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.mrw-accordion {
+  border: 1px solid #ddd;
+}
+
+.mrw-accordion .mrw-accordion__heading {
+  padding: 12px 24px;
+}
+.mrw-accordion .mrw-accordion__heading:not(.has-background) {
+  background-color: #ddd;
+}
+
+/* Uses :not so that the plain style will use theme margin */
+.mrw-accordion:not(.is-style-plain) .mrw-accordion__heading {
+  margin: 0 !important;
+}
+
+.mrw-accordion--has-js .mrw-accordion__heading {
+  padding: 0 !important;
+}
+
+/* Using Longer Selector to Increase Specificity of all: unset */
+.mrw-accordion button.mrw-accordion__button {
+  /* Don't show button styles at all */
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  gap: 1em;
+  align-items: center;
+  width: 100%;
+  padding: 12px 24px;
+  cursor: pointer;
+}
+.mrw-accordion button.mrw-accordion__button:focus {
+  outline: 3px solid currentColor;
+}
+.mrw-accordion button.mrw-accordion__button:focus:not(:focus-visible) {
+  outline: none;
+}
+
+.mrw-accordion__icon {
+  flex: 0 0 auto;
+  display: block !important;
+  width: 1em;
+  height: 1em;
+  max-width: 32px;
+  max-height: 32px;
+  transition: transform 0.125s linear;
+}
+.mrw-accordion__icon polyline,
+.mrw-accordion__icon line {
+  stroke: currentColor;
+}
+.mrw-accordion__icon line {
+  transform-origin: 50% 50%;
+  transition: transform 0.125s linear;
+}
+
+.mrw-accordion__svg {
+  display: block;
+}
+
+.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--caret {
+  transform: scaleY(-1);
+}
+
+.mrw-accordion__button[aria-expanded=true] .mrw-accordion__icon--plusminus line:last-child {
+  transform: rotate(90deg);
+}
+
+.mrw-accordion .mrw-accordion__content {
+  /* Display Logic */
+  /* Styles */
+  padding: 24px;
+}
+.mrw-accordion .mrw-accordion__content[aria-hidden=true] {
+  display: none;
+}
+.mrw-accordion .mrw-accordion__content > :first-child {
+  margin-top: 0;
+}
+.mrw-accordion .mrw-accordion__content > :last-child {
+  margin-bottom: 0;
+}
+
+.mrw-accordion.is-style-plain {
+  border: 0 !important;
+}
+.mrw-accordion.is-style-plain .mrw-accordion__heading,
+.mrw-accordion.is-style-plain .mrw-accordion__button {
+  background-color: transparent !important;
+}
+.mrw-accordion.is-style-plain .mrw-accordion__heading,
+.mrw-accordion.is-style-plain .mrw-accordion__button,
+.mrw-accordion.is-style-plain .mrw-accordion__content {
+  padding: 0 !important;
+}
+
+/*# sourceMappingURL=style-index.css.map*/

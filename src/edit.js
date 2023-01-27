@@ -6,7 +6,7 @@ import classnames from 'classnames';
 import { __ } from '@wordpress/i18n';
 import {
 	useBlockProps,
-	InnerBlocks,
+	useInnerBlocksProps,
 	RichText,
 	BlockControls,
 	InspectorControls,
@@ -196,14 +196,18 @@ export default function Edit( { isSelected, attributes, clientId, setAttributes 
 						<Icon icon={icons[selectedIcon]} />
 					</button>
 				</HeadingTag>
-				<div ref={innerContainer} id={contentId} class="mrw-accordion__content">
-					<InnerBlocks
-						allowedBlocks={allBlocksExceptSelf}
-						/*
-						trying with this off because you get a nicer inserter
-						template={[[ 'core/paragraph', { placeholder: __( 'Accordion content…', 'mrw-accordion' )}]]} */
-						/>
-				</div>
+				<div
+					{ ...useInnerBlocksProps(
+						{
+							id: contentId,
+							className: "mrw-accordion__content",
+							ref: innerContainer,
+						},
+						{
+							allowedBlocks: {allBlocksExceptSelf},
+						}
+					) }
+				/>
 			</div>
 		</>
 	);

@@ -1,7 +1,7 @@
 === MRW Accordion Block ===
 Contributors:      mrwweb
 Tags:              block
-Requires at least: 5.8
+Requires at least: 5.9
 Requires PHP:	   7.0
 Tested up to:      6.0
 Stable tag:        0.4.0
