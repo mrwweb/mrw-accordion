@@ -1,9 +1,3 @@
-/**
- * The following styles get applied both on the front of your site
- * and in the editor.
- *
- * Replace them with your own styles or remove the file completely.
- */
 .mrw-accordion {
   border: 1px solid #ddd;
 }
@@ -13,6 +7,9 @@
 }
 .mrw-accordion .mrw-accordion__heading:not(.has-background) {
   background-color: #ddd;
+}
+.mrw-accordion .mrw-accordion__heading * {
+  color: inherit !important;
 }
 
 /* Uses :not so that the plain style will use theme margin */
