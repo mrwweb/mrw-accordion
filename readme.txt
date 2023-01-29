@@ -4,7 +4,7 @@ Tags:              block
 Requires at least: 5.9
 Requires PHP:	   7.0
 Tested up to:      6.0
-Stable tag:        0.4.0
+Stable tag:        0.5.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Tags: Accordion, Expand, Collapse, FAQ
@@ -57,7 +57,11 @@ Use a block variation!
 = 0.5.0 =
 * Thanks for the Consortium for Service Innovation for a small sponsorhip and user testing!
 * Expand/Collapse now works in the editor (all block still open-by-default in the editor)
-* Fixes: Wrap long headings, show icon in open state in editor, strip fallback heading's with inline formatting from accordion content, fix accordions with removed custom IDs, don't show block if heading and content are empty.
+* Upgrade block to use `useInnerBlocksProps()`. WP minimum version bumped to 5.9
+* Merge settings panels into one for easier editing
+* Add style to force heading text and icon to honor heading color setting more freuqently
+* Adjust how theme color and font-sizes are accessed so the plugin works with PHP or `theme.json` settings
+* Fixes: Wrap long headings, show icon in open state in editor, strip fallback heading's with inline formatting from accordion content, fix accordions with removed custom IDs, don't show block if heading and content are empty
 
 = 0.4.0 =
 * Refactor icons to use real SVGs and use a chevron icon by default

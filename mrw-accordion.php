@@ -2,13 +2,14 @@
 /**
  * Plugin Name:       MRW Accordion
  * Description:       An accessible accordion block that's a joy to edit
- * Requires at least: 5.8
+ * Requires at least: 5.9
  * Requires PHP:      7.0
- * Version:           0.5.0-dev
+ * Version:           0.5.0
  * Author:            Mark Root-Wiley
  * License:           GPL-2.0-or-later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:       mrw-accordion
+ * Update URI: 		  false
  *
  * @package           mrw-accordion
  */
