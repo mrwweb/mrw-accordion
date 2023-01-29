@@ -48,7 +48,7 @@ function get_accordion_heading_classes( $font_size = false, $bg_color = false, $
  * @param string $content content to replace heading in
  * @return string $content with heading removed
  */
-function strip_heading( $level = 2, $heading, $content ) {
+function strip_heading( $level, $heading, $content ) {
 	/* Due to current "Hybrid Block" strategy, I now need to filter out the first block which is the heading */
 	$search_string = "<h${level}>${heading}</h${level}>";
 	return trim( str_replace( $search_string, '', html_entity_decode( $content ) ) );
