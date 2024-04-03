@@ -1,12 +1,18 @@
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/style.scss ***!
+  \***************************************************************************************************************************************************************************************************************************************/
 .mrw-accordion {
-  border: 1px solid #ddd;
+  --mrw-accordion--color: #ddd;
+  --mrw-accordion--button-padding: 12px 24px;
+  --mrw-accordion--content-padding: 24px;
+  border: 1px solid var(--mrw-accordion--color);
 }
 
 .mrw-accordion .mrw-accordion__heading {
-  padding: 12px 24px;
+  padding: var(--mrw-accordion--button-padding);
 }
 .mrw-accordion .mrw-accordion__heading:not(.has-background) {
-  background-color: #ddd;
+  background-color: var(--mrw-accordion--color);
 }
 .mrw-accordion .mrw-accordion__heading * {
   color: inherit !important;
@@ -31,7 +37,7 @@
   gap: 1em;
   align-items: center;
   width: 100%;
-  padding: 12px 24px;
+  padding: var(--mrw-accordion--color);
   cursor: pointer;
 }
 .mrw-accordion button.mrw-accordion__button:focus {
@@ -74,7 +80,7 @@
 .mrw-accordion .mrw-accordion__content {
   /* Display Logic */
   /* Styles */
-  padding: 24px;
+  padding: var(--mrw-accordion--content-padding);
 }
 .mrw-accordion .mrw-accordion__content[aria-hidden=true] {
   display: none;
