@@ -151,10 +151,11 @@
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option label {
   display: block;
   aspect-ratio: 1/1;
+  max-width: 44px;
+  width: 100%;
   /* Hidden Text */
   text-indent: -999px;
   overflow: hidden;
-  max-width: 44px;
 }
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option input[value=caret] + label {
   background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBjbGFzcz0ibXJ3LWFjY29yZGlvbl9fc3ZnIG1ydy1hY2NvcmRpb25fX3N2Zy0tY2FyZXQiIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSI+PHBvbHlsaW5lIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBwb2ludHM9IjIsNiA4LDEyIDE0LDYiIC8+PC9zdmc+) center/28px no-repeat;

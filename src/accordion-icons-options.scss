@@ -5,7 +5,6 @@
 }
 
 .mrw-accordion-icon-option .components-base-control__field {
-
 	.components-flex {
 		flex-direction: row;
 		justify-content: flex-start;
@@ -50,18 +49,20 @@
 		label {
 			display: block;
 			aspect-ratio: 1/1;
+			max-width: 44px;
+			width: 100%;
 			/* Hidden Text */
 			text-indent: -999px;
 			overflow: hidden;
-			max-width: 44px;
 		}
 
-        input[value="caret"] + label {
-            background: transparent url("../img/caret.svg") center / 28px no-repeat;
-        }
+		input[value="caret"] + label {
+			background: transparent url("../img/caret.svg") center / 28px no-repeat;
+		}
 
-        input[value="plusMinus"] + label {
-            background: transparent url("../img/plusminus.svg") center / 28px no-repeat;
-        }
+		input[value="plusMinus"] + label {
+			background: transparent url("../img/plusminus.svg") center / 28px
+				no-repeat;
+		}
 	}
 }
