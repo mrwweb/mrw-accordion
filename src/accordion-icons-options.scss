@@ -4,23 +4,14 @@
 	font-size: 15px;
 }
 
+.mrw-accordion-icon-option {
+	margin-block-start: 20px;
+}
+
 .mrw-accordion-icon-option .components-base-control__field {
 	.components-flex {
 		flex-direction: row;
 		justify-content: flex-start;
-	}
-
-	.components-base-control__label {
-		border: 0;
-		clip: rect(1px, 1px, 1px, 1px);
-		clip-path: inset(50%);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		width: 1px;
-		word-wrap: normal !important;
 	}
 
 	.components-radio-control__option {

@@ -50,8 +50,8 @@ __webpack_require__.r(__webpack_exports__);
 
 function Edit({
   isSelected,
-  attributes,
   clientId,
+  attributes,
   setAttributes
 }) {
   const {
@@ -69,14 +69,14 @@ function Edit({
       accordionId: clientId
     });
   }
-  const colors = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSetting)("color.palette"),
+  const colors = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSettings)("color.palette"),
     activePrimaryColor = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(colors, {
       color: primaryColor
     }),
     activeHeadingTextColor = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(colors, {
       color: headingTextColor
     }),
-    fontSizes = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSetting)("typography.fontSizes"),
+    fontSizes = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSettings)("typography.fontSizes"),
     activeFontSize = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(fontSizes, {
       size: headingFontSize
     }),
@@ -85,41 +85,42 @@ function Edit({
     contentId = (anchor ? anchor : accordionId) + "-content",
     allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== "mrw/accordion"),
     selectedIcon = accordionIcon !== null && accordionIcon !== void 0 ? accordionIcon : "caret",
-    icons = {},
+    icons = {
+      caret: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+        "aria-hidden": "true",
+        class: "mrw-accordion__svg mrw-accordion__svg--caret",
+        x: "0",
+        y: "0",
+        viewBox: "0 0 16 16",
+        fill: "none"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("polyline", {
+        stroke: "#000",
+        "stroke-width": "2",
+        points: "2,6 8,12 14,6"
+      })),
+      plusMinus: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+        "aria-hidden": "true",
+        class: "mrw-accordion__svg mrw-accordion__svg--plusminus",
+        viewBox: "0 0 16 16",
+        fill: "none"
+      }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("line", {
+        x1: "2",
+        y1: "8",
+        x2: "14",
+        y2: "8",
+        stroke: "#000",
+        "stroke-width": "2"
+      }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("line", {
+        x1: "8",
+        y1: "2",
+        x2: "8",
+        y2: "14",
+        stroke: "#000",
+        "stroke-width": "2"
+      }))
+    },
     toggleButton = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useRef)(),
     innerContainer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useRef)();
-  icons.caret = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    "aria-hidden": "true",
-    class: "mrw-accordion__svg mrw-accordion__svg--caret",
-    x: "0",
-    y: "0",
-    viewBox: "0 0 16 16",
-    fill: "none"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("polyline", {
-    stroke: "#000",
-    "stroke-width": "2",
-    points: "2,6 8,12 14,6"
-  }));
-  icons.plusMinus = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
-    "aria-hidden": "true",
-    class: "mrw-accordion__svg mrw-accordion__svg--plusminus",
-    viewBox: "0 0 16 16",
-    fill: "none"
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("line", {
-    x1: "2",
-    y1: "8",
-    x2: "14",
-    y2: "8",
-    stroke: "#000",
-    "stroke-width": "2"
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("line", {
-    x1: "8",
-    y1: "2",
-    x2: "8",
-    y2: "14",
-    stroke: "#000",
-    "stroke-width": "2"
-  }));
   function setHeadingLevel(level) {
     setAttributes({
       level: parseInt(level)
@@ -167,42 +168,37 @@ function Edit({
       isActive: headingLevel === 4,
       onClick: () => setHeadingLevel(4)
     }]
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
-    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Accordion Settings", "mrw-accordion")
-  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
-    style: {
-      marginBottom: "8px"
-    }
-  }, "Primary Color"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ColorPalette, {
-    value: primaryColor,
-    onChange: val => setAttributes({
-      primaryColor: val
-    }),
-    colors: colors,
-    disableCustomColors: true
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "mrw-accordion-settings-heading"
-  }, "Heading Styles"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
+  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.InspectorControls, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.PanelColorSettings, {
+    title: "Accordion Colors",
+    colorSettings: [{
+      value: primaryColor,
+      onChange: val => setAttributes({
+        primaryColor: val
+      }),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Accent")
+    }, {
+      value: headingTextColor,
+      onChange: val => setAttributes({
+        headingTextColor: val
+      }),
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading Text")
+    }],
+    children: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.ContrastChecker, {
+      fontSize: headingFontSize,
+      textColor: headingTextColor,
+      backgroundColor: primaryColor || "#DDDDDD"
+    })
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+    title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading Settings"),
+    initialOpen: false
+  }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
     value: headingFontSize,
     onChange: val => setAttributes({
       headingFontSize: val
     }),
     disableCustomFontSizes: true,
     fontSizes: fontSizes
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("fieldset", null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("legend", {
-    style: {
-      marginBottom: "8px"
-    }
-  }, "Heading Text Color"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ColorPalette, {
-    value: headingTextColor,
-    onChange: val => setAttributes({
-      headingTextColor: val
-    }),
-    colors: colors,
-    disableCustomColors: true
-  })), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("h3", {
-    className: "mrw-accordion-settings-heading"
-  }, "Icon"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RadioControl, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RadioControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Expand/Collapse Icon", "mrw-accordion"),
     selected: selectedIcon,
     options: [{
@@ -216,7 +212,7 @@ function Edit({
       accordionIcon: val
     }),
     className: "mrw-accordion-icon-option"
-  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
       className: "mrw-accordion"
     }),
