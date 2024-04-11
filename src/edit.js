@@ -5,21 +5,22 @@ import { find } from "lodash";
 import classnames from "classnames";
 import { __ } from "@wordpress/i18n";
 import {
+	BlockControls,
+	ContrastChecker,
+	InspectorControls,
+	PanelColorSettings,
+	RichText,
 	useBlockProps,
 	useInnerBlocksProps,
-	RichText,
-	BlockControls,
-	InspectorControls,
-	useSetting,
-	PanelColorSettings,
+	useSettings,
 } from "@wordpress/block-editor";
 import {
+	FontSizePicker,
 	Icon,
 	Panel,
 	PanelBody,
-	ToolbarDropdownMenu,
 	RadioControl,
-	FontSizePicker,
+	ToolbarDropdownMenu,
 } from "@wordpress/components";
 import { useRef } from "@wordpress/element";
 
@@ -54,10 +55,10 @@ export default function Edit({
 		setAttributes({ accordionId: clientId });
 	}
 
-	const colors = useSetting("color.palette"),
+	const colors = useSettings("color.palette"),
 		activePrimaryColor = find(colors, { color: primaryColor }),
 		activeHeadingTextColor = find(colors, { color: headingTextColor }),
-		fontSizes = useSetting("typography.fontSizes"),
+		fontSizes = useSettings("typography.fontSizes"),
 		activeFontSize = find(fontSizes, { size: headingFontSize }),
 		headingLevel = level ?? 2,
 		HeadingTag = "h" + headingLevel,
@@ -159,6 +160,13 @@ export default function Edit({
 							label: __("Heading Text"),
 						},
 					]}
+					children={
+						<ContrastChecker
+							fontSize={headingFontSize}
+							textColor={headingTextColor}
+							backgroundColor={primaryColor || "#DDDDDD"}
+						/>
+					}
 				/>
 				<Panel>
 					<PanelBody title={__("Heading Settings")} initialOpen={false}>

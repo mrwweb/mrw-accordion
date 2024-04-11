@@ -69,14 +69,14 @@ function Edit({
       accordionId: clientId
     });
   }
-  const colors = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSetting)("color.palette"),
+  const colors = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSettings)("color.palette"),
     activePrimaryColor = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(colors, {
       color: primaryColor
     }),
     activeHeadingTextColor = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(colors, {
       color: headingTextColor
     }),
-    fontSizes = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSetting)("typography.fontSizes"),
+    fontSizes = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useSettings)("typography.fontSizes"),
     activeFontSize = (0,lodash__WEBPACK_IMPORTED_MODULE_1__.find)(fontSizes, {
       size: headingFontSize
     }),
@@ -182,7 +182,12 @@ function Edit({
         headingTextColor: val
       }),
       label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading Text")
-    }]
+    }],
+    children: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.ContrastChecker, {
+      fontSize: headingFontSize,
+      textColor: headingTextColor,
+      backgroundColor: primaryColor || "#DDDDDD"
+    })
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading Settings"),
     initialOpen: false
