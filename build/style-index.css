@@ -10,6 +10,7 @@
 
 .mrw-accordion .mrw-accordion__heading {
   padding: var(--mrw-accordion--button-padding);
+  text-wrap: wrap !important;
 }
 .mrw-accordion .mrw-accordion__heading:not(.has-background) {
   background-color: var(--mrw-accordion--color);
@@ -37,7 +38,7 @@
   gap: 1em;
   align-items: center;
   width: 100%;
-  padding: var(--mrw-accordion--color);
+  padding: var(--mrw-accordion--button-padding);
   cursor: pointer;
 }
 .mrw-accordion button.mrw-accordion__button:focus {
