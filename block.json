@@ -30,7 +30,8 @@
 			"type": "string"
 		},
 		"level": {
-			"type": "integer"
+			"type": "integer",
+			"default": 2
 		},
 		"headingText": {
 			"type": "string"

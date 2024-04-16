@@ -7,6 +7,7 @@ import { __ } from "@wordpress/i18n";
 import {
 	BlockControls,
 	ContrastChecker,
+	HeadingLevelDropdown,
 	InspectorControls,
 	PanelColorSettings,
 	RichText,
@@ -20,13 +21,7 @@ import {
 	Panel,
 	PanelBody,
 	RadioControl,
-	ToolbarDropdownMenu,
 } from "@wordpress/components";
-
-/**
- * Internal Dependencies
- */
-import HeadingLevelIcon from "./gutenberg-scripts/heading-level-icons.js";
 
 /**
  * Editor Styles to Compile
@@ -54,14 +49,12 @@ export default function Edit({
 	if (accordionId !== clientId) {
 		setAttributes({ accordionId: clientId });
 	}
-
 	const colors = useSettings("color.palette"),
 		activePrimaryColor = find(colors, { color: primaryColor }),
 		activeHeadingTextColor = find(colors, { color: headingTextColor }),
 		fontSizes = useSettings("typography.fontSizes"),
 		activeFontSize = find(fontSizes, { size: headingFontSize }),
-		headingLevel = level ?? 2,
-		HeadingTag = "h" + headingLevel,
+		HeadingTag = "h" + level,
 		contentId = (anchor ? anchor : accordionId) + "-content",
 		allBlocksExceptSelf = wp.blocks
 			.getBlockTypes()
@@ -94,9 +87,6 @@ export default function Edit({
 			),
 		};
 
-	function setHeadingLevel(level) {
-		setAttributes({ level: parseInt(level) });
-	}
 	// For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
 	function toggleAccordion() {
 		setAttributes({ editorExpanded: !editorExpanded });
@@ -105,36 +95,9 @@ export default function Edit({
 	return (
 		<>
 			<BlockControls group="block">
-				<ToolbarDropdownMenu
-					icon={<HeadingLevelIcon level={headingLevel} />}
-					label={__("Heading level", "mrw-accordion")}
-					controls={[
-						{
-							title: __("Heading 2", "mrw-accordion"),
-							icon: (
-								<HeadingLevelIcon level="2" isPressed={headingLevel === 2} />
-							),
-							onClick: () => setHeadingLevel(2),
-							isActive: headingLevel === 2,
-							className: "custom-class",
-						},
-						{
-							title: __("Heading 3", "mrw-accordion"),
-							icon: (
-								<HeadingLevelIcon level="3" isPressed={headingLevel === 3} />
-							),
-							isActive: headingLevel === 3,
-							onClick: () => setHeadingLevel(3),
-						},
-						{
-							title: __("Heading 4", "mrw-accordion"),
-							icon: (
-								<HeadingLevelIcon level="4" isPressed={headingLevel === 4} />
-							),
-							isActive: headingLevel === 4,
-							onClick: () => setHeadingLevel(4),
-						},
-					]}
+				<HeadingLevelDropdown
+					value={level}
+					onChange={(newLevel) => setAttributes({ level: newLevel })}
 				/>
 			</BlockControls>
 			<InspectorControls>
@@ -143,12 +106,12 @@ export default function Edit({
 					colorSettings={[
 						{
 							value: primaryColor,
-							onChange: (val) => setAttributes({ primaryColor: val }),
+							onChange: (newVal) => setAttributes({ primaryColor: newVal }),
 							label: __("Accent"),
 						},
 						{
 							value: headingTextColor,
-							onChange: (val) => setAttributes({ headingTextColor: val }),
+							onChange: (newVal) => setAttributes({ headingTextColor: newVal }),
 							label: __("Heading Text"),
 						},
 					]}
@@ -164,7 +127,7 @@ export default function Edit({
 					<PanelBody title={__("Heading Settings")} initialOpen={false}>
 						<FontSizePicker
 							value={headingFontSize}
-							onChange={(val) => setAttributes({ headingFontSize: val })}
+							onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
 							disableCustomFontSizes={true}
 							fontSizes={fontSizes}
 						/>
@@ -175,7 +138,7 @@ export default function Edit({
 								{ label: __("Caret", "mrw-accordion"), value: "caret" },
 								{ label: __("Plus/Minus"), value: "plusMinus" },
 							]}
-							onChange={(val) => setAttributes({ accordionIcon: val })}
+							onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
 							className="mrw-accordion-icon-option"
 						/>
 					</PanelBody>
@@ -207,8 +170,8 @@ export default function Edit({
 						tagName="span"
 						className="mrw-accordion__heading-text"
 						placeholder={__("Accordion Title…", "mrw-accordion")}
-						onChange={(val) => {
-							setAttributes({ headingText: val });
+						onChange={(newVal) => {
+							setAttributes({ headingText: newVal });
 						}}
 						allowedFormats={["core/bold", "core/italic"]}
 					/>
