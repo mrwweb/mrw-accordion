@@ -22,7 +22,6 @@ import {
 	RadioControl,
 	ToolbarDropdownMenu,
 } from "@wordpress/components";
-import { useRef } from "@wordpress/element";
 
 /**
  * Internal Dependencies
@@ -49,6 +48,7 @@ export default function Edit({
 		headingText,
 		headingTextColor,
 		headingFontSize,
+		editorExpanded,
 	} = attributes;
 
 	if (accordionId !== clientId) {
@@ -92,22 +92,14 @@ export default function Edit({
 					<line x1="8" y1="2" x2="8" y2="14" stroke="#000" stroke-width="2" />
 				</svg>
 			),
-		},
-		toggleButton = useRef(),
-		innerContainer = useRef();
+		};
 
 	function setHeadingLevel(level) {
 		setAttributes({ level: parseInt(level) });
 	}
-
+	// For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
 	function toggleAccordion() {
-		const state = "true" === toggleButton.current.getAttribute("aria-expanded");
-		toggleButton.current.setAttribute("aria-expanded", !state);
-		if (state) {
-			innerContainer.current.style.display = "none";
-		} else {
-			innerContainer.current.style.display = "block";
-		}
+		setAttributes({ editorExpanded: !editorExpanded });
 	}
 
 	return (
@@ -221,10 +213,9 @@ export default function Edit({
 						allowedFormats={["core/bold", "core/italic"]}
 					/>
 					<button
-						ref={toggleButton}
 						onClick={toggleAccordion}
 						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`}
-						aria-expanded="true"
+						aria-expanded={!editorExpanded}
 					>
 						<span className="screen-reader-text">Toggle Accordion</span>
 						<Icon icon={icons[selectedIcon]} />
@@ -235,7 +226,7 @@ export default function Edit({
 						{
 							id: contentId,
 							className: "mrw-accordion__content",
-							ref: innerContainer,
+							hidden: !editorExpanded,
 						},
 						{
 							allowedBlocks: { allBlocksExceptSelf },

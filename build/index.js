@@ -24,15 +24,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./gutenberg-scripts/heading-level-icons.js */ "./src/gutenberg-scripts/heading-level-icons.js");
-/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
+/* harmony import */ var _gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./gutenberg-scripts/heading-level-icons.js */ "./src/gutenberg-scripts/heading-level-icons.js");
+/* harmony import */ var _editor_scss__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./editor.scss */ "./src/editor.scss");
 
 /**
  * WordPress Dependencies
  */
-
 
 
 
@@ -62,7 +59,8 @@ function Edit({
     level,
     headingText,
     headingTextColor,
-    headingFontSize
+    headingFontSize,
+    editorExpanded
   } = attributes;
   if (accordionId !== clientId) {
     setAttributes({
@@ -118,33 +116,28 @@ function Edit({
         stroke: "#000",
         "stroke-width": "2"
       }))
-    },
-    toggleButton = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useRef)(),
-    innerContainer = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_6__.useRef)();
+    };
   function setHeadingLevel(level) {
     setAttributes({
       level: parseInt(level)
     });
   }
+  // For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
   function toggleAccordion() {
-    const state = "true" === toggleButton.current.getAttribute("aria-expanded");
-    toggleButton.current.setAttribute("aria-expanded", !state);
-    if (state) {
-      innerContainer.current.style.display = "none";
-    } else {
-      innerContainer.current.style.display = "block";
-    }
+    setAttributes({
+      editorExpanded: !editorExpanded
+    });
   }
   return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.BlockControls, {
     group: "block"
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.ToolbarDropdownMenu, {
-    icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+    icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
       level: headingLevel
     }),
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading level", "mrw-accordion"),
     controls: [{
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading 2", "mrw-accordion"),
-      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "2",
         isPressed: headingLevel === 2
       }),
@@ -153,7 +146,7 @@ function Edit({
       className: "custom-class"
     }, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading 3", "mrw-accordion"),
-      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "3",
         isPressed: headingLevel === 3
       }),
@@ -161,7 +154,7 @@ function Edit({
       onClick: () => setHeadingLevel(3)
     }, {
       title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading 4", "mrw-accordion"),
-      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_7__["default"], {
+      icon: (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_gutenberg_scripts_heading_level_icons_js__WEBPACK_IMPORTED_MODULE_6__["default"], {
         level: "4",
         isPressed: headingLevel === 4
       }),
@@ -243,10 +236,9 @@ function Edit({
     },
     allowedFormats: ["core/bold", "core/italic"]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
-    ref: toggleButton,
     onClick: toggleAccordion,
     className: `mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`,
-    "aria-expanded": "true"
+    "aria-expanded": !editorExpanded
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
     className: "screen-reader-text"
   }, "Toggle Accordion"), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Icon, {
@@ -255,7 +247,7 @@ function Edit({
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useInnerBlocksProps)({
       id: contentId,
       className: "mrw-accordion__content",
-      ref: innerContainer
+      hidden: !editorExpanded
     }, {
       allowedBlocks: {
         allBlocksExceptSelf
@@ -468,17 +460,6 @@ module.exports = window["wp"]["components"];
 
 /***/ }),
 
-/***/ "@wordpress/element":
-/*!*********************************!*\
-  !*** external ["wp","element"] ***!
-  \*********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = window["wp"]["element"];
-
-/***/ }),
-
 /***/ "@wordpress/i18n":
 /*!******************************!*\
   !*** external ["wp","i18n"] ***!
@@ -583,7 +564,7 @@ var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","name":"mrw/accordion","title":"Accordion","version":"0.3.0","description":"Simple, accessible accordion block.","keywords":["faq","expand","collapse"],"category":"design","icon":"arrow-down-alt2","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"accordionId":{"type":"string"},"accordionIcon":{"type":"string"},"primaryColor":{"type":"string"},"headingTextColor":{"type":"string"},"anchor":{"type":"string"},"level":{"type":"integer"},"headingText":{"type":"string"},"headingFontSize":{"type":"string"}},"textdomain":"mrw-accordion","editorScript":"file:./build/index.js","editorStyle":"file:./build/index.css","style":"file:./build/style-index.css","script":"file:./build/accordion-script.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":2,"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","name":"mrw/accordion","title":"Accordion","version":"0.3.0","description":"Simple, accessible accordion block.","keywords":["faq","expand","collapse"],"category":"design","icon":"arrow-down-alt2","supports":{"html":false,"align":["wide","full"],"anchor":true},"attributes":{"accordionId":{"type":"string"},"accordionIcon":{"type":"string"},"primaryColor":{"type":"string"},"headingTextColor":{"type":"string"},"anchor":{"type":"string"},"level":{"type":"integer"},"headingText":{"type":"string"},"headingFontSize":{"type":"string"},"editorExpanded":{"type":"boolean","default":true}},"textdomain":"mrw-accordion","editorScript":"file:./build/index.js","editorStyle":"file:./build/index.css","style":"file:./build/style-index.css","script":"file:./build/accordion-script.js"}');
 
 /***/ })
 
