@@ -110,7 +110,6 @@ function Edit({
         "stroke-width": "2"
       }))
     };
-
   // For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
   function toggleAccordion() {
     setAttributes({
@@ -144,7 +143,7 @@ function Edit({
       textColor: headingTextColor,
       backgroundColor: primaryColor || "#DDDDDD"
     })
-  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.Panel, null, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
+  }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.PanelBody, {
     title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Heading Settings"),
     initialOpen: false
   }, (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.FontSizePicker, {
@@ -153,7 +152,7 @@ function Edit({
       headingFontSize: newVal
     }),
     disableCustomFontSizes: true,
-    fontSizes: fontSizes
+    fontSizes: fontSizes[0]
   }), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_5__.RadioControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_3__.__)("Expand/Collapse Icon", "mrw-accordion"),
     selected: selectedIcon,
@@ -168,7 +167,7 @@ function Edit({
       accordionIcon: newVal
     }),
     className: "mrw-accordion-icon-option"
-  })))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
+  }))), (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", {
     ...(0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_4__.useBlockProps)({
       className: "mrw-accordion"
     }),

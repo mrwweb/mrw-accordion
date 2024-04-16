@@ -18,7 +18,6 @@ import {
 import {
 	FontSizePicker,
 	Icon,
-	Panel,
 	PanelBody,
 	RadioControl,
 } from "@wordpress/components";
@@ -86,7 +85,6 @@ export default function Edit({
 				</svg>
 			),
 		};
-
 	// For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
 	function toggleAccordion() {
 		setAttributes({ editorExpanded: !editorExpanded });
@@ -123,26 +121,25 @@ export default function Edit({
 						/>
 					}
 				/>
-				<Panel>
-					<PanelBody title={__("Heading Settings")} initialOpen={false}>
-						<FontSizePicker
-							value={headingFontSize}
-							onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
-							disableCustomFontSizes={true}
-							fontSizes={fontSizes}
-						/>
-						<RadioControl
-							label={__("Expand/Collapse Icon", "mrw-accordion")}
-							selected={selectedIcon}
-							options={[
-								{ label: __("Caret", "mrw-accordion"), value: "caret" },
-								{ label: __("Plus/Minus"), value: "plusMinus" },
-							]}
-							onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
-							className="mrw-accordion-icon-option"
-						/>
-					</PanelBody>
-				</Panel>
+
+				<PanelBody title={__("Heading Settings")} initialOpen={false}>
+					<FontSizePicker
+						value={headingFontSize}
+						onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
+						disableCustomFontSizes={true}
+						fontSizes={fontSizes[0]}
+					/>
+					<RadioControl
+						label={__("Expand/Collapse Icon", "mrw-accordion")}
+						selected={selectedIcon}
+						options={[
+							{ label: __("Caret", "mrw-accordion"), value: "caret" },
+							{ label: __("Plus/Minus"), value: "plusMinus" },
+						]}
+						onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
+						className="mrw-accordion-icon-option"
+					/>
+				</PanelBody>
 			</InspectorControls>
 			<div
 				{...useBlockProps({
