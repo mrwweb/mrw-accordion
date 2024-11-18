@@ -1,6 +1,6 @@
 {
 	"name": "mrw-accordion",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"description": "An accessible accordion block that's a joy to edit",
 	"author": "Mark Root-Wiley",
 	"license": "GPL-2.0-or-later",
@@ -14,11 +14,11 @@
 		"packages-update": "wp-scripts packages-update"
 	},
 	"dependencies": {
-		"@wordpress/block-editor": "^6.2.0",
-		"@wordpress/blocks": "^10.0.0",
-		"@wordpress/i18n": "^4.2.0"
+		"@wordpress/block-editor": "^12.23.0",
+		"@wordpress/blocks": "^12.32.0",
+		"@wordpress/i18n": "^4.55.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^17.0.0"
+		"@wordpress/scripts": "^27.6.0"
 	}
 }

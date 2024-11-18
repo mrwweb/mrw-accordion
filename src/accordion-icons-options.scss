@@ -4,24 +4,14 @@
 	font-size: 15px;
 }
 
-.mrw-accordion-icon-option .components-base-control__field {
+.mrw-accordion-icon-option {
+	margin-block-start: 20px;
+}
 
+.mrw-accordion-icon-option .components-base-control__field {
 	.components-flex {
 		flex-direction: row;
 		justify-content: flex-start;
-	}
-
-	.components-base-control__label {
-		border: 0;
-		clip: rect(1px, 1px, 1px, 1px);
-		clip-path: inset(50%);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		width: 1px;
-		word-wrap: normal !important;
 	}
 
 	.components-radio-control__option {
@@ -50,18 +40,20 @@
 		label {
 			display: block;
 			aspect-ratio: 1/1;
+			max-width: 44px;
+			width: 100%;
 			/* Hidden Text */
 			text-indent: -999px;
 			overflow: hidden;
-			max-width: 44px;
 		}
 
-        input[value="caret"] + label {
-            background: transparent url("../img/caret.svg") center / 28px no-repeat;
-        }
+		input[value="caret"] + label {
+			background: transparent url("../img/caret.svg") center / 28px no-repeat;
+		}
 
-        input[value="plusMinus"] + label {
-            background: transparent url("../img/plusminus.svg") center / 28px no-repeat;
-        }
+		input[value="plusMinus"] + label {
+			background: transparent url("../img/plusminus.svg") center / 28px
+				no-repeat;
+		}
 	}
 }

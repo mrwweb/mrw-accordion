@@ -5,12 +5,12 @@
 	"title": "Accordion",
 	"version": "0.3.0",
 	"description": "Simple, accessible accordion block.",
-	"keywords": [ "faq", "expand", "collapse" ],
+	"keywords": ["faq", "expand", "collapse"],
 	"category": "design",
 	"icon": "arrow-down-alt2",
 	"supports": {
 		"html": false,
-		"align": [ "wide", "full" ],
+		"align": ["wide", "full"],
 		"anchor": true
 	},
 	"attributes": {
@@ -30,13 +30,18 @@
 			"type": "string"
 		},
 		"level": {
-			"type": "integer"
+			"type": "integer",
+			"default": 2
 		},
 		"headingText": {
 			"type": "string"
 		},
 		"headingFontSize": {
 			"type": "string"
+		},
+		"editorExpanded": {
+			"type": "boolean",
+			"default": true
 		}
 	},
 	"textdomain": "mrw-accordion",

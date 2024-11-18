@@ -3,8 +3,8 @@ Contributors:      mrwweb
 Tags:              block
 Requires at least: 5.9
 Requires PHP:	   7.0
-Tested up to:      6.0
-Stable tag:        0.5.0
+Tested up to:      6.5
+Stable tag:        0.7.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Tags: Accordion, Expand, Collapse, FAQ
@@ -53,6 +53,17 @@ The block content will be left in the page source where the accordion toggle is 
 Use a block variation!
 
 == Changelog ==
+
+= 0.7.0 (April 11, 2024) =
+
+* Refactor sidebar settings to be more like default WordPress, especially the colors
+* Add basic Color Contrast checks that work in most cases
+
+= 0.6.0 (April 7, 2024) =
+
+* Use custom properties for easier styling
+* Fix icon setting in block editor
+* Bump @wordpress/scripts and all other packages
 
 = 0.5.0 =
 * Thanks for the Consortium for Service Innovation for a small sponsorhip and user testing!

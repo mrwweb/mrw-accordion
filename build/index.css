@@ -1,12 +1,19 @@
+/*!****************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/editor.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************/
 .mrw-accordion {
-  border: 1px solid #ddd;
+  --mrw-accordion--color: #ddd;
+  --mrw-accordion--button-padding: 12px 24px;
+  --mrw-accordion--content-padding: 24px;
+  border: 1px solid var(--mrw-accordion--color);
 }
 
 .mrw-accordion .mrw-accordion__heading {
-  padding: 12px 24px;
+  padding: var(--mrw-accordion--button-padding);
+  text-wrap: wrap !important;
 }
 .mrw-accordion .mrw-accordion__heading:not(.has-background) {
-  background-color: #ddd;
+  background-color: var(--mrw-accordion--color);
 }
 .mrw-accordion .mrw-accordion__heading * {
   color: inherit !important;
@@ -31,7 +38,7 @@
   gap: 1em;
   align-items: center;
   width: 100%;
-  padding: 12px 24px;
+  padding: var(--mrw-accordion--button-padding);
   cursor: pointer;
 }
 .mrw-accordion button.mrw-accordion__button:focus {
@@ -74,7 +81,7 @@
 .mrw-accordion .mrw-accordion__content {
   /* Display Logic */
   /* Styles */
-  padding: 24px;
+  padding: var(--mrw-accordion--content-padding);
 }
 .mrw-accordion .mrw-accordion__content[aria-hidden=true] {
   display: none;
@@ -105,22 +112,13 @@
   font-size: 15px;
 }
 
+.mrw-accordion-icon-option {
+  margin-block-start: 20px;
+}
+
 .mrw-accordion-icon-option .components-base-control__field .components-flex {
   flex-direction: row;
   justify-content: flex-start;
-}
-.mrw-accordion-icon-option .components-base-control__field .components-base-control__label {
-  border: 0;
-  clip: rect(1px, 1px, 1px, 1px);
-  -webkit-clip-path: inset(50%);
-          clip-path: inset(50%);
-  height: 1px;
-  margin: -1px;
-  overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
-  word-wrap: normal !important;
 }
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option {
   position: relative;
@@ -145,10 +143,11 @@
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option label {
   display: block;
   aspect-ratio: 1/1;
+  max-width: 44px;
+  width: 100%;
   /* Hidden Text */
   text-indent: -999px;
   overflow: hidden;
-  max-width: 44px;
 }
 .mrw-accordion-icon-option .components-base-control__field .components-radio-control__option input[value=caret] + label {
   background: transparent url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGFyaWEtaGlkZGVuPSJ0cnVlIiBjbGFzcz0ibXJ3LWFjY29yZGlvbl9fc3ZnIG1ydy1hY2NvcmRpb25fX3N2Zy0tY2FyZXQiIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxNiAxNiIgZmlsbD0ibm9uZSI+PHBvbHlsaW5lIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIyIiBwb2ludHM9IjIsNiA4LDEyIDE0LDYiIC8+PC9zdmc+) center/28px no-repeat;

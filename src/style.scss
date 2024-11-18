@@ -1,12 +1,16 @@
 .mrw-accordion {
-	border: 1px solid #ddd;
+	--mrw-accordion--color: #ddd;
+	--mrw-accordion--button-padding: 12px 24px;
+	--mrw-accordion--content-padding: 24px;
+	border: 1px solid var(--mrw-accordion--color);
 }
 
 .mrw-accordion .mrw-accordion__heading {
-	padding: 12px 24px;
+	padding: var(--mrw-accordion--button-padding);
+	text-wrap: wrap !important;
 
 	&:not(.has-background) {
-		background-color: #ddd;
+		background-color: var(--mrw-accordion--color);
 	}
 
 	* {
@@ -34,7 +38,7 @@
 	gap: 1em;
 	align-items: center;
 	width: 100%;
-	padding: 12px 24px;
+	padding: var(--mrw-accordion--button-padding);
 	cursor: pointer;
 
 	&:focus {
@@ -53,7 +57,7 @@
 	height: 1em;
 	max-width: 32px;
 	max-height: 32px;
-	transition: transform .125s linear;
+	transition: transform 0.125s linear;
 
 	polyline,
 	line {
@@ -62,7 +66,7 @@
 
 	line {
 		transform-origin: 50% 50%;
-		transition: transform .125s linear;
+		transition: transform 0.125s linear;
 	}
 }
 
@@ -74,7 +78,9 @@
 	transform: scaleY(-1);
 }
 
-.mrw-accordion__button[aria-expanded="true"] .mrw-accordion__icon--plusminus line:last-child {
+.mrw-accordion__button[aria-expanded="true"]
+	.mrw-accordion__icon--plusminus
+	line:last-child {
 	transform: rotate(90deg);
 }
 
@@ -85,7 +91,7 @@
 	}
 
 	/* Styles */
-	padding: 24px;
+	padding: var(--mrw-accordion--content-padding);
 
 	> :first-child {
 		margin-top: 0;
