@@ -50,6 +50,6 @@ function get_accordion_heading_classes( $font_size = false, $bg_color = false, $
  */
 function strip_heading( $level, $heading, $content ) {
 	/* Due to current "Hybrid Block" strategy, I now need to filter out the first block which is the heading */
-	$search_string = "<h${level}>${heading}</h${level}>";
+	$search_string = "<h{$level}>{$heading}</h{$level}>";
 	return trim( str_replace( $search_string, '', html_entity_decode( $content ) ) );
 }

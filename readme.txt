@@ -4,7 +4,7 @@ Tags:              block
 Requires at least: 5.9
 Requires PHP:	   7.0
 Tested up to:      6.5
-Stable tag:        0.7.0
+Stable tag:        0.7.1
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 Tags: Accordion, Expand, Collapse, FAQ
@@ -53,6 +53,10 @@ The block content will be left in the page source where the accordion toggle is 
 Use a block variation!
 
 == Changelog ==
+
+= 0.7.1 (January 31, 2025) =
+
+* Fix deprecated `${var}` with `{$var}` in PHP heading tag replacement
 
 = 0.7.0 (April 11, 2024) =
 
