@@ -1,7 +1,8 @@
-@import "style";
-@import "accordion-icons-options";
+@use "sass:meta";
 
 .editor-styles-wrapper {
+	@include meta.load-css( "style" );
+	@include meta.load-css( "accordion-icons-options" );
 
 	/* Should match front-end styles for .mrw-accordion__button */
 	.mrw-accordion__heading {
