@@ -3,7 +3,7 @@
 	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
 	"name": "mrw/accordion",
 	"title": "Accordion",
-	"version": "0.3.0",
+	"version": "0.8.0",
 	"description": "Simple, accessible accordion block.",
 	"keywords": ["faq", "expand", "collapse"],
 	"category": "design",
