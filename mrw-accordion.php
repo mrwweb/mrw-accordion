@@ -28,11 +28,6 @@ function block_init() {
 		array( 'render_callback' => __NAMESPACE__ . '\render_accordion' )
 	);
 
-	register_block_style('mrw/accordion', array(
-		'name' => 'plain',
-		'label' => _x('Plain', 'accordion block style', 'mrw-accordion')
-	));
-
 }
 add_action( 'init', __NAMESPACE__ . '\block_init' );
 

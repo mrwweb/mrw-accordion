@@ -44,6 +44,9 @@
 			"default": true
 		}
 	},
+	"styles": [
+		{ "name": "plain", "label": "Plain" }
+	],
 	"textdomain": "mrw-accordion",
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",
