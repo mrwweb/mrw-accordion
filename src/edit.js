@@ -19,6 +19,7 @@ import {
 	FontSizePicker,
 	Icon,
 	PanelBody,
+	PanelRow,
 	RadioControl,
 } from "@wordpress/components";
 
@@ -26,6 +27,7 @@ import {
  * Editor Styles to Compile
  */
 import "./editor.scss";
+import "./accordion-icons-options.scss";
 
 export default function Edit({
 	isSelected,
@@ -98,14 +100,14 @@ export default function Edit({
 					onChange={(newLevel) => setAttributes({ level: newLevel })}
 				/>
 			</BlockControls>
-			<InspectorControls>
+			<InspectorControls group="styles">
 				<PanelColorSettings
 					title="Accordion Colors"
 					colorSettings={[
 						{
 							value: primaryColor,
 							onChange: (newVal) => setAttributes({ primaryColor: newVal }),
-							label: __("Accent"),
+							label: __("Container"),
 						},
 						{
 							value: headingTextColor,
@@ -123,22 +125,26 @@ export default function Edit({
 				/>
 
 				<PanelBody title={__("Heading Settings")} initialOpen={false}>
-					<FontSizePicker
-						value={headingFontSize}
-						onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
-						disableCustomFontSizes={true}
-						fontSizes={fontSizes[0]}
-					/>
-					<RadioControl
-						label={__("Expand/Collapse Icon", "mrw-accordion")}
-						selected={selectedIcon}
-						options={[
-							{ label: __("Caret", "mrw-accordion"), value: "caret" },
-							{ label: __("Plus/Minus"), value: "plusMinus" },
-						]}
-						onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
-						className="mrw-accordion-icon-option"
-					/>
+					<PanelRow>
+						<FontSizePicker
+							value={headingFontSize}
+							onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
+							disableCustomFontSizes={true}
+							fontSizes={fontSizes[0]}
+						/>
+					</PanelRow>
+					<PanelRow>
+						<RadioControl
+							label={__("Expand/Collapse Icon", "mrw-accordion")}
+							selected={selectedIcon}
+							options={[
+								{ label: __("Caret", "mrw-accordion"), value: "caret" },
+								{ label: __("Plus/Minus"), value: "plusMinus" },
+							]}
+							onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
+							className="mrw-accordion-icon-option"
+						/>
+					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<div
@@ -162,24 +168,26 @@ export default function Edit({
 						color: headingTextColor,
 					}}
 				>
-					<RichText
-						value={`${headingText ?? ""}`}
-						tagName="span"
-						className="mrw-accordion__heading-text"
-						placeholder={__("Accordion Title…", "mrw-accordion")}
-						onChange={(newVal) => {
-							setAttributes({ headingText: newVal });
-						}}
-						allowedFormats={["core/bold", "core/italic"]}
-					/>
-					<button
-						onClick={toggleAccordion}
-						className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`}
-						aria-expanded={!editorExpanded}
-					>
-						<span className="screen-reader-text">Toggle Accordion</span>
-						<Icon icon={icons[selectedIcon]} />
-					</button>
+					<span class="mrw-accordion__button">
+						<RichText
+							value={`${headingText ?? ""}`}
+							tagName="span"
+							className="mrw-accordion__heading-text"
+							placeholder={__("Accordion Title…", "mrw-accordion")}
+							onChange={(newVal) => {
+								setAttributes({ headingText: newVal });
+							}}
+							allowedFormats={["core/bold", "core/italic"]}
+						/>
+						<button
+							onClick={toggleAccordion}
+							className={`mrw-accordion__editor-button mrw-accordion__icon mrw-accordion__icon--${selectedIcon.toLowerCase()}`}
+							aria-expanded={!editorExpanded}
+						>
+							<span className="screen-reader-text">Toggle Accordion</span>
+							<Icon icon={icons[selectedIcon]} />
+						</button>
+					</span>
 				</HeadingTag>
 				<div
 					{...useInnerBlocksProps(

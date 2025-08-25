@@ -1,1 +1,96 @@
-(()=>{"use strict";function t(t){if("string"!=typeof t)return!1;const e=document.getElementById(t);return null!==e&&e}document.addEventListener("DOMContentLoaded",function(){const t=document.querySelectorAll(".mrw-accordion"),n=t.length,r=window.location.hash.substring(1);let i,o;for(i=0;i<n;i+=1)o=new e(t[i],i),o.init(t[i].id===r)}),window.addEventListener("hashchange",function(){!function(){const e=t(window.location.hash.substring(1));if(!e)return;const n=e.querySelector(".mrw-accordion__heading button"),r=e.querySelector(".mrw-accordion__content");"false"===n.getAttribute("aria-expanded")&&(e.classList.toggle("is-open"),n.setAttribute("aria-expanded","true"),r.setAttribute("aria-hidden","false"))}()});const e=function(e,n){const r=e.querySelector(".mrw-accordion__heading"),i=e.querySelector(".mrw-accordion__content"),o=function(t){const e=t.innerHTML,n=document.createElement("button");return n.innerHTML=e.trim(),t.innerHTML="",t.appendChild(n),n}(r),a=e.id;this.init=function(n){i.id=a+"-content",o.setAttribute("aria-controls",i.id),o.className=r.className,o.classList.remove("mrw-accordion__heading"),o.classList.add("mrw-accordion__button"),o.setAttribute("aria-expanded",n),o.addEventListener("click",e=>function(e){const n=t(e);if(!n)return;const r=n.querySelector(".mrw-accordion__heading button"),i=n.querySelector(".mrw-accordion__content");"false"===r.getAttribute("aria-expanded")?(n.classList.toggle("is-open"),r.setAttribute("aria-expanded","true"),i.setAttribute("aria-hidden","false")):(n.classList.toggle("is-open"),r.setAttribute("aria-expanded","false"),i.setAttribute("aria-hidden","true"))}(e.currentTarget.getAttribute("aria-controls").replace("-content","")),!1),i.setAttribute("aria-hidden",!n),e.classList.add("mrw-accordion--has-js")}}})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+/*!*********************************!*\
+  !*** ./src/accordion-script.js ***!
+  \*********************************/
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  const accordions = document.querySelectorAll('.mrw-accordion'),
+    accordionsTotal = accordions.length,
+    target = window.location.hash.substring(1);
+  let i, accordion;
+  for (i = 0; i < accordionsTotal; i = i + 1) {
+    accordion = new AccordionMaker(accordions[i], i);
+    accordion.init(accordions[i].id === target);
+  }
+});
+window.addEventListener('hashchange', function () {
+  const target = window.location.hash.substring(1);
+  openAccordion(target);
+});
+function getAccordionInstance(accordionId) {
+  if (typeof accordionId !== 'string') {
+    return false;
+  }
+  const accordion = document.getElementById(accordionId);
+  if (accordion === null) {
+    return false;
+  }
+  return accordion;
+}
+function toggleAccordion(accordionId) {
+  const accordion = getAccordionInstance(accordionId);
+  if (!accordion) {
+    return;
+  }
+  const button = accordion.querySelector('.mrw-accordion__heading button'),
+    body = accordion.querySelector('.mrw-accordion__content');
+  if ('false' === button.getAttribute('aria-expanded')) {
+    accordion.classList.toggle('is-open');
+    button.setAttribute('aria-expanded', 'true');
+    body.setAttribute('aria-hidden', 'false');
+  } else {
+    accordion.classList.toggle('is-open');
+    button.setAttribute('aria-expanded', 'false');
+    body.setAttribute('aria-hidden', 'true');
+  }
+}
+function openAccordion(accordionId) {
+  const accordion = getAccordionInstance(accordionId);
+  if (!accordion) {
+    return;
+  }
+  const button = accordion.querySelector('.mrw-accordion__heading button'),
+    body = accordion.querySelector('.mrw-accordion__content');
+  if ('false' === button.getAttribute('aria-expanded')) {
+    accordion.classList.toggle('is-open');
+    button.setAttribute('aria-expanded', 'true');
+    body.setAttribute('aria-hidden', 'false');
+  }
+}
+const AccordionMaker = function (accordionContainer, i) {
+  const heading = accordionContainer.querySelector('.mrw-accordion__heading'),
+    body = accordionContainer.querySelector('.mrw-accordion__content'),
+    // This function both creates the button and returns it
+    button = addButtonToHeading(heading),
+    accordionID = accordionContainer.id;
+  this.init = function (isOpen) {
+    body.id = accordionID + '-content';
+    button.setAttribute('aria-controls', body.id);
+    button.className = heading.className;
+    button.classList.remove('mrw-accordion__heading');
+    button.classList.add('mrw-accordion__button');
+
+    // ARIA and Event for Button
+    button.setAttribute('aria-expanded', isOpen);
+    button.addEventListener('click', e => toggleAccordion(e.currentTarget.getAttribute('aria-controls').replace('-content', '')), false);
+
+    // ARIA for body
+    body.setAttribute('aria-hidden', !isOpen);
+
+    // Class to distinguish JS-enabled accordions
+    accordionContainer.classList.add('mrw-accordion--has-js');
+  };
+  function addButtonToHeading(heading) {
+    const headingHTML = heading.innerHTML,
+      button = document.createElement('button');
+    button.innerHTML = headingHTML.trim();
+    heading.innerHTML = '';
+    heading.appendChild(button);
+    return button;
+  }
+};
+/******/ })()
+;
+//# sourceMappingURL=accordion-script.js.map

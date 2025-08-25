@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"$schema": "https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json",
 	"name": "mrw/accordion",
 	"title": "Accordion",
@@ -11,7 +11,29 @@
 	"supports": {
 		"html": false,
 		"align": ["wide", "full"],
-		"anchor": true
+		"anchor": true,
+		"customClassName": true,
+		"color": {
+			"background": true,
+			"text": true,
+			"heading": true,
+			"enableContrastChecker": true
+		},
+		"typography": {
+			"fontSize": true
+		},
+		"shadow": true,
+		"spacing": {
+			"blockGap": true,
+			"margin": true,
+			"padding": true
+		}
+	},
+	"selectors": {
+		"spacing": {
+			"blockGap": ".mrw-accordion .mrw-accordion__content",
+			"padding": ".mrw-accordion .mrw-accordion__content"
+		}
 	},
 	"attributes": {
 		"accordionId": {
