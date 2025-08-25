@@ -2,7 +2,6 @@
 
 .editor-styles-wrapper {
 	@include meta.load-css( "style" );
-	@include meta.load-css( "accordion-icons-options" );
 
 	/* Should match front-end styles for .mrw-accordion__button */
 	.mrw-accordion__heading {
@@ -35,7 +34,7 @@
 		transform: scaleY(-1);
 	}
 
-	.mrw-accordion__icon--plusminus[aria-expanded="true"] line:last-child {
+	.mrw-accordion__icon--plusminus[aria-expanded="false"] line:last-child {
 		transform: rotate(90deg);
 	}
 
