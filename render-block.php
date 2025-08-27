@@ -38,8 +38,7 @@ function render_accordion( $atts, $content ) {
 		"class" => "mrw-accordion",
 		"id" => $accordion_id,
 	]);
-	error_log( print_r( $wrapper_attributes, true ) );
-	
+	do_action( 'qm/debug', $wrapper_attributes );
 
 	ob_start();
 

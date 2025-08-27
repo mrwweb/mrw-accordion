@@ -54,6 +54,15 @@ export default function Edit({
 		fontSizes = useSettings("typography.fontSizes"),
 		activeFontSize = find(fontSizes, { size: headingFontSize }),
 		HeadingTag = "h" + level,
+		headingClasses = classnames("mrw-accordion__heading", {
+			[`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
+			[`has-${activePrimaryColor?.slug}-background-color`]:
+				activePrimaryColor,
+			"has-background": activePrimaryColor,
+			[`has-${activeHeadingTextColor?.slug}-color`]:
+				activeHeadingTextColor,
+			"has-text-color": activeHeadingTextColor,
+		}),
 		contentId = (anchor ? anchor : accordionId) + "-content",
 		allBlocksExceptSelf = wp.blocks
 			.getBlockTypes()
@@ -85,6 +94,7 @@ export default function Edit({
 				</svg>
 			),
 		};
+
 	// For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
 	function toggleAccordion() {
 		setAttributes({ editorExpanded: !editorExpanded });
@@ -139,7 +149,6 @@ export default function Edit({
 							onChange={(newVal) => setAttributes({ accordionIcon: newVal })}
 							className="mrw-accordion-icon-option"
 						/>
-					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<div
@@ -149,15 +158,7 @@ export default function Edit({
 				style={{ borderColor: primaryColor }}
 			>
 				<HeadingTag
-					className={classnames("mrw-accordion__heading", {
-						[`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
-						[`has-${activePrimaryColor?.slug}-background-color`]:
-							activePrimaryColor,
-						"has-background": activePrimaryColor,
-						[`has-${activeHeadingTextColor?.slug}-color`]:
-							activeHeadingTextColor,
-						"has-text-color": activeHeadingTextColor,
-					})}
+					className={ headingClasses}
 					style={{
 						backgroundColor: primaryColor,
 						color: headingTextColor,

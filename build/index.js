@@ -8,7 +8,7 @@
 /***/ ((module) => {
 
 "use strict";
-module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":3,"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","name":"mrw/accordion","title":"Accordion","version":"0.8.0","description":"Simple, accessible accordion block.","keywords":["faq","expand","collapse"],"category":"design","icon":"arrow-down-alt2","supports":{"html":false,"align":["wide","full"],"anchor":true,"customClassName":true,"color":{"background":true,"text":true,"heading":true,"enableContrastChecker":true},"typography":{"fontSize":true},"shadow":true,"spacing":{"blockGap":true,"margin":true,"padding":true}},"selectors":{"spacing":{"blockGap":".mrw-accordion .mrw-accordion__content","padding":".mrw-accordion .mrw-accordion__content"}},"attributes":{"accordionId":{"type":"string"},"accordionIcon":{"type":"string"},"primaryColor":{"type":"string"},"headingTextColor":{"type":"string"},"anchor":{"type":"string"},"level":{"type":"integer","default":2},"headingText":{"type":"string"},"headingFontSize":{"type":"string"},"editorExpanded":{"type":"boolean","default":true}},"styles":[{"name":"plain","label":"Plain"}],"textdomain":"mrw-accordion","editorScript":"file:./build/index.js","editorStyle":"file:./build/index.css","style":"file:./build/style-index.css","script":"file:./build/accordion-script.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"apiVersion":3,"$schema":"https://raw.githubusercontent.com/WordPress/gutenberg/trunk/schemas/json/block.json","name":"mrw/accordion","title":"Accordion","version":"0.8.0","description":"Simple, accessible accordion block.","keywords":["faq","expand","collapse"],"category":"design","icon":"arrow-down-alt2","supports":{"html":false,"align":["wide","full"],"anchor":true,"customClassName":true,"color":{"background":true,"text":true,"heading":true,"enableContrastChecker":true},"typography":{"fontSize":true},"__experimentalBorder":{"color":true,"radius":true,"style":true,"width":true},"shadow":true,"spacing":{"blockGap":true,"margin":true,"padding":true}},"selectors":{"spacing":{"blockGap":".mrw-accordion .mrw-accordion__content","padding":".mrw-accordion .mrw-accordion__content"}},"attributes":{"accordionId":{"type":"string"},"accordionIcon":{"type":"string"},"primaryColor":{"type":"string"},"headingTextColor":{"type":"string"},"anchor":{"type":"string"},"level":{"type":"integer","default":2},"headingText":{"type":"string"},"headingFontSize":{"type":"string"},"editorExpanded":{"type":"boolean","default":true}},"styles":[{"name":"plain","label":"Plain"}],"textdomain":"mrw-accordion","editorScript":"file:./build/index.js","editorStyle":"file:./build/index.css","style":"file:./build/style-index.css","script":"file:./build/accordion-script.js"}');
 
 /***/ }),
 
@@ -153,7 +153,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Edit({
-  isSelected,
   clientId,
   attributes,
   setAttributes
@@ -186,6 +185,13 @@ function Edit({
       size: headingFontSize
     }),
     HeadingTag = "h" + level,
+    headingClasses = classnames__WEBPACK_IMPORTED_MODULE_1___default()("mrw-accordion__heading", {
+      [`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
+      [`has-${activePrimaryColor?.slug}-background-color`]: activePrimaryColor,
+      "has-background": activePrimaryColor,
+      [`has-${activeHeadingTextColor?.slug}-color`]: activeHeadingTextColor,
+      "has-text-color": activeHeadingTextColor
+    }),
     contentId = (anchor ? anchor : accordionId) + "-content",
     allBlocksExceptSelf = wp.blocks.getBlockTypes().map(block => block.name).filter(name => name !== "mrw/accordion"),
     selectedIcon = accordionIcon !== null && accordionIcon !== void 0 ? accordionIcon : "caret",
@@ -225,6 +231,7 @@ function Edit({
         })]
       })
     };
+
   // For some reason inlining this on the onClick attribute results in a recursion error but this works fine. I don't understand it, but I'll go with this for now.
   function toggleAccordion() {
     setAttributes({
@@ -264,32 +271,27 @@ function Edit({
         })
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Heading Settings"),
-        initialOpen: false,
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.FontSizePicker, {
-            value: headingFontSize,
-            onChange: newVal => setAttributes({
-              headingFontSize: newVal
-            }),
-            disableCustomFontSizes: true,
-            fontSizes: fontSizes[0]
-          })
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.PanelRow, {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RadioControl, {
-            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Expand/Collapse Icon", "mrw-accordion"),
-            selected: selectedIcon,
-            options: [{
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Caret", "mrw-accordion"),
-              value: "caret"
-            }, {
-              label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Plus/Minus"),
-              value: "plusMinus"
-            }],
-            onChange: newVal => setAttributes({
-              accordionIcon: newVal
-            }),
-            className: "mrw-accordion-icon-option"
-          })
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.FontSizePicker, {
+          value: headingFontSize,
+          onChange: newVal => setAttributes({
+            headingFontSize: newVal
+          }),
+          disableCustomFontSizes: true,
+          fontSizes: fontSizes[0]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_4__.RadioControl, {
+          label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Expand/Collapse Icon", "mrw-accordion"),
+          selected: selectedIcon,
+          options: [{
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Caret", "mrw-accordion"),
+            value: "caret"
+          }, {
+            label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)("Plus/Minus"),
+            value: "plusMinus"
+          }],
+          onChange: newVal => setAttributes({
+            accordionIcon: newVal
+          }),
+          className: "mrw-accordion-icon-option"
         })]
       })]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
@@ -300,13 +302,7 @@ function Edit({
         borderColor: primaryColor
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(HeadingTag, {
-        className: classnames__WEBPACK_IMPORTED_MODULE_1___default()("mrw-accordion__heading", {
-          [`has-${activeFontSize?.slug}-font-size`]: activeFontSize,
-          [`has-${activePrimaryColor?.slug}-background-color`]: activePrimaryColor,
-          "has-background": activePrimaryColor,
-          [`has-${activeHeadingTextColor?.slug}-color`]: activeHeadingTextColor,
-          "has-text-color": activeHeadingTextColor
-        }),
+        className: headingClasses,
         style: {
           backgroundColor: primaryColor,
           color: headingTextColor

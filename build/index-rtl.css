@@ -99,7 +99,7 @@
 .editor-styles-wrapper .mrw-accordion.is-style-plain .mrw-accordion__content {
   padding: 0 !important;
 }
-.editor-styles-wrapper .mrw-accordion__heading {
+.editor-styles-wrapper .mrw-accordion__button {
   display: flex;
   justify-content: space-between;
   align-items: center;
