@@ -4,7 +4,7 @@
 	@include meta.load-css( "style" );
 
 	/* Should match front-end styles for .mrw-accordion__button */
-	.mrw-accordion__heading {
+	.mrw-accordion__button {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
