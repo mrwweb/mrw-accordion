@@ -19,7 +19,6 @@ import {
 	FontSizePicker,
 	Icon,
 	PanelBody,
-	PanelRow,
 	RadioControl,
 } from "@wordpress/components";
 
@@ -30,7 +29,6 @@ import "./editor.scss";
 import "./accordion-icons-options.scss";
 
 export default function Edit({
-	isSelected,
 	clientId,
 	attributes,
 	setAttributes,
@@ -124,17 +122,14 @@ export default function Edit({
 					}
 				/>
 
-				<PanelBody title={__("Heading Settings")} initialOpen={false}>
-					<PanelRow>
-						<FontSizePicker
-							value={headingFontSize}
-							onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
-							disableCustomFontSizes={true}
-							fontSizes={fontSizes[0]}
-						/>
-					</PanelRow>
-					<PanelRow>
-						<RadioControl
+				<PanelBody title={__("Heading Settings")}>
+					<FontSizePicker
+						value={headingFontSize}
+						onChange={(newVal) => setAttributes({ headingFontSize: newVal })}
+						disableCustomFontSizes={true}
+						fontSizes={fontSizes[0]}
+					/>
+					<RadioControl
 							label={__("Expand/Collapse Icon", "mrw-accordion")}
 							selected={selectedIcon}
 							options={[
