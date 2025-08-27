@@ -29,7 +29,7 @@ function render_accordion( $atts, $content ) {
 	$icon = $atts['accordionIcon'] ?? 'caret';
 	$icon = in_array( $icon, ['caret','plusMinus'] ) ? $icon : 'caret';
 	if( $primary_color ) {
-		$block_styles = 'border-color:' . esc_attr( $primary_color );
+		$block_styles = 'border-color:' . esc_attr( $primary_color ) . ';';
 	}
 	$icon_svg = file_get_contents( plugin_dir_path(__FILE__) .'img/' . strtolower( $icon ) . '.svg' );
 
