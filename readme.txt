@@ -1,3 +1,8 @@
+--------------------------------------------------------------
+⚠ WARNING
+With the introduction of the Accordion Block in WP 6.9, I plan to retire this block
+--------------------------------------------------------------
+
 === MRW Accordion Block ===
 Contributors:      mrwweb
 Tags:              block
