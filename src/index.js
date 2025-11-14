@@ -2,7 +2,8 @@
  * WordPress dependencies
  */
 import { registerBlockType } from '@wordpress/blocks';
-import { useInnerBlockProps, InnerBlocks } from '@wordpress/block-editor';
+import { InnerBlocks } from '@wordpress/block-editor';
+import transforms from './transforms';
 
 /**
  * Internal dependencies
@@ -19,6 +20,7 @@ import './style.scss';
  */
 registerBlockType( blockJson, {
 	edit,
+	transforms,
 	save: props => {
 		const {
 			level,
