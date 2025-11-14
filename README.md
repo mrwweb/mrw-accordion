@@ -1,4 +1,4 @@
-# MRW Accordion Block
+# MRW Accordion Block [DEPRECATED!]
 
 v0.8.0
 
@@ -87,21 +87,21 @@ Use a block variation!
 
 ### 0.4.0
 
-* Refactor icons to use real SVGs and use a chevron icon by default
+- Refactor icons to use real SVGs and use a chevron icon by default
 - Add accordion title heading to saved markup to improve plugin deactivation
 - Dev: Add block.json schema, fix build process to avoid losing front-end script
 
 ### 0.3.0
 
-* Font size setting for headings
+- Font size setting for headings
 - Color options for accordion background and heading text color
 - Ensure there is always an ID for each accordion
 - Fix bug with accordion expand/collapse icon squishing. Thanks for catching that, @drivendevelopment!
 
 ### 0.2.0
 
-* Single block version. This one should work!
+- Single block version. This one should work!
 
 ### 0.1.0
 
-* Failed first attempt due to [nested `templateLock` bug](https://github.com/WordPress/gutenberg/issues/11681#issuecomment-884532810). I learned something. Let's try this again!
+- Failed first attempt due to [nested `templateLock` bug](https://github.com/WordPress/gutenberg/issues/11681#issuecomment-884532810). I learned something. Let's try this again!
